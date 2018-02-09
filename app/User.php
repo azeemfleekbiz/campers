@@ -14,8 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $primaryKey = 'user_id';
+    
     protected $fillable = [
-        'name', 'email', 'password',
+        'full_name','role_id', 'email', 'password',
     ];
 
     /**
@@ -26,4 +28,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function userrole() {
+        return $this->belongsTo('App\UserRole');
+        }
 }
