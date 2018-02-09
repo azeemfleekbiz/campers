@@ -2,11 +2,11 @@
 @section('contents')
 <section class="content-header">
       <h1>
-        Currencies        
+        Additional Service        
       </h1>
       <ol class="breadcrumb">
           <li class="active"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>     
-          <li>Currencies</li>
+          <li>Additional Service</li>
       </ol>
     </section>
  <div class="box">
@@ -19,7 +19,7 @@
             @endif
         <button rel="{{url('')}}" type="button" 
                 class="btn btn-info make-modal-large iframe-form-open" 
-                data-toggle="modal" data-target="#modal-default" title="Add Currency">
+                data-toggle="modal" data-target="#modal-default" title="Add Coupon">
             <span class="glyphicon glyphicon-plus"></span>Add
         </button>
             </div>
@@ -28,53 +28,52 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>                
-                  <th>Currency Code</th>
-                  <th>Currency Symbol</th>
+                  <th>Service Name</th>
+                  <th>Amount</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach( $currencies as $currency )
+                @foreach( $services as $service )
                 <tr>                              
-                    <td>{{$currency->currency_code}}</td>
-                    <td>{{$currency->currency_symbol}}</td>
-                    <td><a href="#editcurrency{{$currency->id}}" rel="" type="button" 
+                    <td>{{$service->name}}</td>
+                    <td>{{$service->amount}}</td>
+                    <td><a href="#editcoupons{{$service->id}}" rel="" type="button" 
                            class="btn btn-info make-modal-large iframe-form-open" 
-                           data-toggle="modal"  title="Edit Currency {{$currency->currency_code}}">
+                           data-toggle="modal"  title="Edit Server {{$service->name}}">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="#deletecurrency{{$currency->id}}" rel="" type="button" 
+                        <a href="#deletecoupons{{$service->id}}" rel="" type="button" 
                            class="btn btn-info make-modal-large iframe-form-open" 
-                           data-toggle="modal"  title="Delete Currency">
+                           data-toggle="modal"  title="Delete Service">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a></td>
                 </tr>
 
 
-            <div class="modal fade" id="editcurrency{{$currency->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="editcoupons{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Edit Currency</h4>
+                            <h4 class="modal-title" id="myModalLabel">Edit Additional Service</h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form" method="POST" action="{{url('/admin/currencies/update-currencies')}}" enctype="multipart/form-data">
+                            <form role="form" method="POST" action="{{url('/admin/additional-services/update-services')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <input type="hidden" name="currency_code_id" value="{{$currency->id}}">
-                                <div class="box-body">
-                                    
+                                <input type="hidden" name="service_id" value="{{$service->id}}">
+                                <div class="box-body">                                    
                                     <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Code</label>
-                            <input type="text" name="currency_code" value="{{$currency->currency_code}}" class="form-control" id="exampleInputEmail1" placeholder="Enter currency code" required="required">
+                            <label for="exampleInputEmail1">Service Name</label>
+                            <input type="text" name="service_name" value="{{$service->name}}" class="form-control" id="exampleInputEmail1" placeholder="Enter additional service name" required="required">
                         </div> 
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Symbol</label>
-                            <input type="text" name="currency_symbol" value="{{$currency->currency_symbol}}"  class="form-control" id="exampleInputEmail1" placeholder="Enter currency symbol" required="required">
+                            <label for="exampleInputEmail1">Amount</label>
+                            <input type="text" name="amount" value="{{$service->amount}}"  class="form-control" id="exampleInputEmail1" placeholder="Enter additional service amount" required="required">
                         </div> 
                         
-                                                                                            
+                                                                                           
 
                                     
                                 </div>
@@ -92,19 +91,19 @@
 
 
 
-            <div class="modal fade" id="deletecurrency{{$currency->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="deletecoupons{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Delete currency code</h4>
+                            <h4 class="modal-title" id="myModalLabel">Delete Additional Services</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to Delete this Currency Code <b>{{$currency->currency_code}}</b>?</p>  
+                            <p>Are you sure you want to Delete this Additional Service <b>{{$service->name}}</b>?</p>  
 
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                <a href="{{ url('/admin/currencies/destroy/'.$currency->id) }}">
+                                <a href="{{ url('/admin/additional-services/destroy/'.$service->id) }}">
                                     <button 
                                         class="btn btn-primary">Delete</button>
                                 </a>
@@ -130,21 +129,20 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Add New Currency</h4>
+                <h4 class="modal-title">Add New Additional Services</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="POST" action="{{url('/admin/currencies/add-currencies')}}" enctype="multipart/form-data">
+                <form role="form" method="POST" action="{{url('/admin/additional-services/add-services')}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="box-body">
-                        
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Code</label>
-                            <input type="text" name="currency_code" class="form-control" id="exampleInputEmail1" placeholder="Enter currency code" required="required">
+                            <label for="exampleInputEmail1">Service Name</label>
+                            <input type="text" name="service_name" class="form-control" id="exampleInputEmail1" placeholder="Enter additional service name" required="required">
                         </div> 
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Symbol</label>
-                            <input type="text" name="currency_symbol" class="form-control" id="exampleInputEmail1" placeholder="Enter currency symbol" required="required">
+                            <label for="exampleInputEmail1">Service Amount</label>
+                            <input type="text" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter additional service amount" required="required">
                         </div> 
                         
                     </div>

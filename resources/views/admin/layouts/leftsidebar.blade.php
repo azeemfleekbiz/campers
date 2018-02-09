@@ -31,7 +31,7 @@
             <li><a href="{{ url('/admin/equipments') }}"><i class="fa fa-circle-o"></i> Equipments</a></li>
             <li><a href="{{ url('/admin/additional-services') }}"><i class="fa fa-circle-o"></i> Additional Services</a></li>
             <li><a href="{{ url('/admin/currencies') }}"><i class="fa fa-circle-o"></i> Currencies</a></li>
-            <li><a href="{{ url('/admin/settings') }}"><i class="fa fa-circle-o"></i> Setting</a></li>
+            
             
           </ul>
         </li>
