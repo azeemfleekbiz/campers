@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//FRONTEND
+
+
 Route::get('/admin/dashboard', 'Admin\AdminController@index');
 
 Route::prefix('admin')->group(function(){    
