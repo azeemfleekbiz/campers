@@ -2,11 +2,11 @@
 @section('contents')
 <section class="content-header">
       <h1>
-        Currencies        
+        Cities Companies        
       </h1>
       <ol class="breadcrumb">
           <li class="active"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>     
-          <li>Currencies</li>
+          <li>Cities Companies</li>
       </ol>
     </section>
  <div class="box">
@@ -19,7 +19,7 @@
             @endif
         <button rel="{{url('')}}" type="button" 
                 class="btn btn-info make-modal-large iframe-form-open" 
-                data-toggle="modal" data-target="#modal-default" title="Add Currency">
+                data-toggle="modal" data-target="#modal-default" title="Add City Comapny">
             <span class="glyphicon glyphicon-plus"></span>Add
         </button>
             </div>
@@ -28,56 +28,61 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>                
-                  <th>Currency Code</th>
-                  <th>Currency Symbol</th>
+                  <th>City Name</th>   
+                  <th>Company Name</th>   
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach( $currencies as $currency )
+                @foreach( $citycompanys as $citycompany )
                 <tr>                              
-                    <td>{{$currency->currency_code}}</td>
-                    <td>{{$currency->currency_symbol}}</td>
-                    <td><a href="#editcurrency{{$currency->id}}" rel="" type="button" 
+                    <td>{{$citycompany->city_name}}</td>  
+                    <td>{{$citycompany->company_name}}</td>  
+                    <td><a href="#editcoupons{{$citycompany->id}}" rel="" type="button" 
                            class="btn btn-info make-modal-large iframe-form-open" 
-                           data-toggle="modal"  title="Edit Currency {{$currency->currency_code}}">
+                           data-toggle="modal"  title="Edit Company City {{$citycompany->city_name}}">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="#deletecurrency{{$currency->id}}" rel="" type="button" 
+                        <a href="#deletecoupons{{$citycompany->id}}" rel="" type="button" 
                            class="btn btn-info make-modal-large iframe-form-open" 
-                           data-toggle="modal"  title="Delete Currency">
+                           data-toggle="modal"  title="Delete Company City">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a></td>
                 </tr>
 
 
-            <div class="modal fade" id="editcurrency{{$currency->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="editcoupons{{$citycompany->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Edit Currency</h4>
+                            <h4 class="modal-title" id="myModalLabel">Edit City</h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form" method="POST" action="{{url('/admin/currencies/update-currencies')}}" enctype="multipart/form-data">
+                            <form role="form" method="POST" action="{{url('/admin/cities-companies//update-citycompany')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <input type="hidden" name="currency_code_id" value="{{$currency->id}}">
+                                <input type="hidden" name="city_company_id" value="{{$citycompany->id}}">
                                 <div class="box-body">
-                                    
-                                    <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Code</label>
-                            <input type="text" name="currency_code" value="{{$currency->currency_code}}" class="form-control" id="exampleInputEmail1" placeholder="Enter currency code" required="required">
-                        </div> 
-                        
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Symbol</label>
-                            <input type="text" name="currency_symbol" value="{{$currency->currency_symbol}}"  class="form-control" id="exampleInputEmail1" placeholder="Enter currency symbol" required="required">
+                            <label for="exampleInputEmail1">Select City</label>
+                            <select class="form-control" name="city_id" id="city_id" required="required">
+                                <option value="">Select City</option> 
+                                @foreach( $cities as $city )
+                                <option value="{{$city->id}}" @if ($city->id == $citycompany->city_id) selected="selected"  @endif>{{$city->city_name}}</option>                   
+                                @endforeach
+                            </select>          
                         </div> 
-                        
-                                                                                            
-
-                                    
-                                </div>
+                                                  
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Select Company</label>
+                            <select class="form-control" name="company_id" id="order_type_id" required="required">
+                                <option value="">Select Company</option> 
+                                @foreach( $companies as $company )
+                                <option value="{{$company->id}}" @if ($company->id ==$citycompany->company_id ) selected="selected"  @endif>{{$company->company_name}}</option>                   
+                                @endforeach
+                            </select>          
+                           </div>
+                        </div>
                                 <!-- /.box-body -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -92,19 +97,19 @@
 
 
 
-            <div class="modal fade" id="deletecurrency{{$currency->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="deletecoupons{{$citycompany->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Delete currency code</h4>
+                            <h4 class="modal-title" id="myModalLabel">Delete City Company</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to Delete this Currency Code <b>{{$currency->currency_code}}</b>?</p>  
+                            <p>Are you sure you want to Delete this Company City <b>{{$citycompany->city_name}} {{$citycompany->company_name}} </b>?</p>  
 
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                <a href="{{ url('/admin/currencies/destroy/'.$currency->id) }}">
+                                <a href="{{ url('/admin/cities-companies/destroy/'.$citycompany->id) }}">
                                     <button 
                                         class="btn btn-primary">Delete</button>
                                 </a>
@@ -130,23 +135,31 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Add New Currency</h4>
+                <h4 class="modal-title">Add New City Company</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="POST" action="{{url('/admin/currencies/add-currencies')}}" enctype="multipart/form-data">
+                <form role="form" method="POST" action="{{url('/admin/cities-companies/add-citycompany')}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="box-body">
-                        
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Code</label>
-                            <input type="text" name="currency_code" class="form-control" id="exampleInputEmail1" placeholder="Enter currency code" required="required">
+                            <label for="exampleInputEmail1">Select City</label>
+                            <select class="form-control" name="city_id" id="city_id" required="required">
+                                <option value="">Select City</option> 
+                                @foreach( $cities as $city )
+                                <option value="{{$city->id}}">{{$city->city_name}}</option>                   
+                                @endforeach
+                            </select>          
                         </div> 
-                        
+                                                  
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Currency Symbol</label>
-                            <input type="text" name="currency_symbol" class="form-control" id="exampleInputEmail1" placeholder="Enter currency symbol" required="required">
-                        </div> 
-                        
+                            <label for="exampleInputEmail1">Select Company</label>
+                            <select class="form-control" name="company_id" id="order_type_id" required="required">
+                                <option value="">Select Company</option> 
+                                @foreach( $companies as $company )
+                                <option value="{{$company->id}}">{{$company->company_name}}</option>                   
+                                @endforeach
+                            </select>          
+                        </div>
                     </div>
                     <!-- /.box-body -->
                     <div class="modal-footer">

@@ -2,11 +2,11 @@
 @section('contents')
 <section class="content-header">
       <h1>
-        Coupons        
+        Equipments        
       </h1>
       <ol class="breadcrumb">
           <li class="active"><a href="{{ url('/admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>     
-          <li>Coupons</li>
+          <li>Equipments</li>
       </ol>
     </section>
  <div class="box">
@@ -28,69 +28,52 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>                
-                  <th>Coupon Code</th>
-                  <th>Price</th>
+                  <th>Equipment Name</th>
+                  <th>Amount</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach( $coupon_codes as $coupon_code )
+                @foreach( $equipments as $equipment )
                 <tr>                              
-                    <td>{{$coupon_code->coupon_code}}</td>
-                    <td>{{$coupon_code->price}}%</td>
-                    <td><a href="#editcoupons{{$coupon_code->id}}" rel="" type="button" 
+                    <td>{{$equipment->name}}</td>
+                    <td>{{$equipment->amount}}</td>
+                    <td><a href="#editcoupons{{$equipment->id}}" rel="" type="button" 
                            class="btn btn-info make-modal-large iframe-form-open" 
-                           data-toggle="modal"  title="Edit logo font {{$coupon_code->coupon_code}}">
+                           data-toggle="modal"  title="Edit Equipment {{$equipment->name}}">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </a>
-                        <a href="#deletecoupons{{$coupon_code->id}}" rel="" type="button" 
+                        <a href="#deletecoupons{{$equipment->id}}" rel="" type="button" 
                            class="btn btn-info make-modal-large iframe-form-open" 
-                           data-toggle="modal"  title="Delete Logo font">
+                           data-toggle="modal"  title="Delete Equipment">
                             <span class="glyphicon glyphicon-remove"></span>
                         </a></td>
                 </tr>
 
 
-            <div class="modal fade" id="editcoupons{{$coupon_code->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="editcoupons{{$equipment->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Edit Coupon Code</h4>
+                            <h4 class="modal-title" id="myModalLabel">Edit Equipment</h4>
                         </div>
                         <div class="modal-body">
-                            <form role="form" method="POST" action="{{url('/admin/coupons/update-coupon')}}" enctype="multipart/form-data">
+                            <form role="form" method="POST" action="{{url('/admin/equipments/update-equipment')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <input type="hidden" name="coupon_code_id" value="{{$coupon_code->id}}">
-                                <div class="box-body">
+                                <input type="hidden" name="equipment_id" value="{{$equipment->id}}">
+                                <div class="box-body">                                    
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Select Order Type</label>
-                                        <select class="form-control" name="order_type_id" id="order_type_id" required="required">
-                                            <option value="">Select Order Type</option> 
-                                            @foreach( $order_types as $order_type )
-                                            <option value="{{$order_type->id}}" @if ($order_type->id == $coupon_code->order_type_id) selected="selected"  @endif>{{$order_type->name}}</option>                   
-                                            @endforeach
-                                        </select>          
-                                    </div> 
-                                    <div class="form-group">
-                            <label for="exampleInputEmail1">Coupon Code</label>
-                            <input type="text" name="coupon_code" value="{{$coupon_code->coupon_code}}" class="form-control" id="exampleInputEmail1" placeholder="Enter Coupon Code" required="required">
+                            <label for="exampleInputEmail1">Equipment Name</label>
+                            <input type="text" name="equipment_name" value="{{$equipment->name}}" class="form-control" id="exampleInputEmail1" placeholder="Enter equipment name" required="required">
                         </div> 
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Coupon Price</label>
-                            <input type="text" name="price" value="{{$coupon_code->price}}"  class="form-control" id="exampleInputEmail1" placeholder="Enter Coupon Price" required="required">
+                            <label for="exampleInputEmail1">Amount</label>
+                            <input type="text" name="amount" value="{{$equipment->amount}}"  class="form-control" id="exampleInputEmail1" placeholder="Enter equipment amount" required="required">
                         </div> 
                         
-                         <div class="form-group">
-                            <label for="exampleInputEmail1">Description </label>
-                            <br>
-                            <div class="col-sm-10">
-                                <textarea required="required" name="description" class="textarea" placeholder="Coupon Code Description"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$coupon_code->descp}}</textarea>
-                            </div>
-                            <div style="height: 10px"></div>
-                        </div>                                                                   
+                                                                                           
 
                                     
                                 </div>
@@ -108,19 +91,19 @@
 
 
 
-            <div class="modal fade" id="deletecoupons{{$coupon_code->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="deletecoupons{{$equipment->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Delete Coupon Code</h4>
+                            <h4 class="modal-title" id="myModalLabel">Delete Equipment</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to Delete this Coupon Code <b>{{$coupon_code->coupon_code}}</b>?</p>  
+                            <p>Are you sure you want to Delete this Equipment <b>{{$equipment->coupon_code}}</b>?</p>  
 
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                <a href="{{ url('/admin/logo-fonts/coupons/'.$coupon_code->id) }}">
+                                <a href="{{ url('/admin/equipments/destroy/'.$equipment->id) }}">
                                     <button 
                                         class="btn btn-primary">Delete</button>
                                 </a>
@@ -146,41 +129,21 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Add New Coupon Code</h4>
+                <h4 class="modal-title">Add New Equipment</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="POST" action="{{url('/admin/coupons/save-coupon')}}" enctype="multipart/form-data">
+                <form role="form" method="POST" action="{{url('/admin/equipments/add-equipment')}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Select Order Type</label>
-                            <select class="form-control" name="order_type_id" id="order_type_id" required="required">
-                                <option value="">Select Order Type</option> 
-                                @foreach( $order_types as $order_type )
-                                <option value="{{$order_type->id}}">{{$order_type->name}}</option>                   
-                                @endforeach
-                            </select>          
-                        </div>                         
-                        
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Coupon Code</label>
-                            <input type="text" name="coupon_code" class="form-control" id="exampleInputEmail1" placeholder="Enter Coupon Code" required="required">
+                            <label for="exampleInputEmail1">Equiment Name</label>
+                            <input type="text" name="equipment_name" class="form-control" id="exampleInputEmail1" placeholder="Enter equipment name" required="required">
                         </div> 
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Coupon Price</label>
-                            <input type="text" name="price" class="form-control" id="exampleInputEmail1" placeholder="Enter Coupon Amount in %" required="required">
+                            <label for="exampleInputEmail1">Equiment Amount</label>
+                            <input type="text" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter equipment amount" required="required">
                         </div> 
-                        
-                         <div class="form-group">
-                            <label for="exampleInputEmail1">Description </label>
-                            <br>
-                            <div class="col-sm-10">
-                                <textarea required="required" name="description" class="textarea" placeholder="Coupon Code Description"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            </div>
-                            <div style="height: 10px"></div>
-                        </div>
                         
                     </div>
                     <!-- /.box-body -->

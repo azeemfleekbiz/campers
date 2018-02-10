@@ -59,7 +59,7 @@
                         <div class="modal-body">
                             <form role="form" method="POST" action="{{url('/admin/inclusions/update-inclusions')}}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <input type="hidden" name="coupon_code_id" value="{{$inclusion->id}}">
+                                <input type="hidden" name="inclusion_id" value="{{$inclusion->id}}">
                                 <div class="box-body">                                    
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Inclusion Name</label>
@@ -104,7 +104,7 @@
 
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                                <a href="{{ url('/admin/inclusions/coupons/'.$inclusion->id) }}">
+                                <a href="{{ url('/admin/inclusions/destroy/'.$inclusion->id) }}">
                                     <button 
                                         class="btn btn-primary">Delete</button>
                                 </a>

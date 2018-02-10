@@ -40,22 +40,45 @@ Route::prefix('admin')->group(function(){
     
     Route::post('/companies/update-company',  'Admin\Companies\CompaniesController@updateCompany');  //update company
     
-    Route::get('/companies/destroy/{slug}', 'Admin\Companies\CompaniesController@destroy');//delete comapny
-        
+    Route::get('/companies/destroy/{slug}', 'Admin\Companies\CompaniesController@destroy');//delete comapny        
+    
+    Route::get('/cities-companies',  'Admin\CitiesCompanies\CitiesCompaniesController@index');  //get cities companies list
+    
+    Route::post('/cities-companies/add-citycompany',  'Admin\CitiesCompanies\CitiesCompaniesController@create');  //get cities companies list
+    
+    Route::post('/cities-companies//update-citycompany',  'Admin\CitiesCompanies\CitiesCompaniesController@update');  //get cities companies list
+    
+    Route::get('/cities-companies/destroy/{slug}',  'Admin\CitiesCompanies\CitiesCompaniesController@destroy');  //get cities companies list
+    
+    
+    
+    
+    
+    
     Route::get('/inclusions',  'Admin\Inclusions\InclusionsController@index');  //get Inclusions list
     
     Route::post('/inclusions/add-inclusions',  'Admin\Inclusions\InclusionsController@addInclusions');  //add new  Inclusions
     
-    Route::post('/inclusions/update-inclusions',  'Admin\Inclusions\InclusionsController@updateInclusions');  //update Inclusions
+    Route::post('/inclusions/update-inclusions',  'Admin\Inclusions\InclusionsController@updateInclusion');  //update Inclusions
     
     Route::get('/inclusions/destroy/{slug}', 'Admin\Inclusions\InclusionsController@destroy');//delete Inclusions
-    
-    
-    
-    
+        
     Route::get('/equipments',  'Admin\Equipments\EquipmentsController@index');  //get Equipments list
     
+    Route::post('/equipments/add-equipment',  'Admin\Equipments\EquipmentsController@addEquipment');  //add new  Inclusions
+    
+    Route::post('/equipments/update-equipment',  'Admin\Equipments\EquipmentsController@updateEquipment');  //update Inclusions
+    
+    Route::get('/equipments/destroy/{slug}', 'Admin\Equipments\EquipmentsController@destroy');//delete Inclusions
+    
+    
     Route::get('/additional-services',  'Admin\Additionalservices\AdditionalServicesController@index');  //get Additionalservices list
+    
+    Route::post('/additional-services/add-services',  'Admin\Additionalservices\AdditionalServicesController@addServices');  //add new  Additionalservices
+    
+    Route::post('/additional-services/update-services',  'Admin\Additionalservices\AdditionalServicesController@updateServices');  //update Additionalservices
+    
+    Route::get('/additional-services/destroy/{slug}', 'Admin\Additionalservices\AdditionalServicesController@destroy');//delete Additionalservices
     
     Route::get('/vehicle-types',  'Admin\VehicleTypes\VehicleTypesController@index');  //get VehicleTypes list
     
@@ -69,6 +92,28 @@ Route::prefix('admin')->group(function(){
     
     Route::get('/currencies',  'Admin\Currencies\CurrenciesController@index');  //get Currencies list
     
+    Route::post('/currencies/add-currencies',  'Admin\Currencies\CurrenciesController@addCurrency');  //add new  Currencies
+    
+    Route::post('/currencies/update-currencies',  'Admin\Currencies\CurrenciesController@updateCurrency');  //update Currencies
+    
+    Route::get('/currencies/destroy/{slug}', 'Admin\Currencies\CurrenciesController@destroy');//delete Currencies
+    
+    
+    Route::get('/seasons',  'Admin\Seasons\SeasonsController@index');  //get Seasons list
+    
+    Route::get('/seasons/add-season',  'Admin\Seasons\SeasonsController@addSeason');  //get Season Form
+    
+    Route::post('/seasons/create',  'Admin\Seasons\SeasonsController@create');  //get Season Form
+    
+    Route::post('/seasons/get-companies',  'Admin\Seasons\SeasonsController@getCompaniesByCity');  //get Season Form
+    
+    Route::get('/seasons/edit-season/{slug}',  'Admin\Seasons\SeasonsController@updateSeason');  //get edit Season Form
+    
+    Route::post('/seasons/update',  'Admin\Seasons\SeasonsController@updates');  //get edit Season Form
+    
+    Route::post('/seasons/get-company',  'Admin\Seasons\SeasonsController@getCompaniesCity');  //get Season Form
+    
+   
     Route::get('/change-password', 'Admin\AdminController@changePassword');
     
     Route::get('/logout', 'Admin\AdminController@adminLogout');

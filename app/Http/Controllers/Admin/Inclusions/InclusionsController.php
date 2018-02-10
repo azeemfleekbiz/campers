@@ -22,21 +22,22 @@ class InclusionsController extends Controller
    }
    
    //---------------------add new inclusions----------------------------
-   public function addInclusion(Request $request)
+   public function addInclusions(Request $request)
    {
-       if($request->get('category_name')) {      
-           $category = Inclusions::where('category_name' , '=', $request->get('category_name'))->first();  //--get coupon by coupon code--//
-          if($category==NULL  OR $category->category_name!=$request->get('category_name'))
+       if($request->get('inclusion_name')) {      
+           $inclusions = Inclusions::where('name' , '=', $request->get('inclusion_name'))->first();  //--get coupon by coupon code--//
+          if($inclusions==NULL  OR $inclusions->name!=$request->get('inclusion_name'))
           {    
-            $category = new Inclusions();
-            $category->category_name  = $request->input('category_name');        
-            $category->created_at      = date("Y-m-d H:i:s");
-            $category->updated_at     = date("Y-m-d H:i:s");
-            $category->save();
-            return Redirect::back()->withMessage('Category Successfuly Created.'); 
+            $inclusions = new Inclusions();
+            $inclusions->name  = $request->input('inclusion_name');
+            $inclusions->descp  = $request->input('description');
+            $inclusions->created_at      = date("Y-m-d H:i:s");
+            $inclusions->updated_at     = date("Y-m-d H:i:s");
+            $inclusions->save();
+            return Redirect::back()->withMessage('Inclusion Successfuly Created.'); 
           }else
           {                    
-            return Redirect::back()->withMessage('Error occured Category Name Already Exists!'); 
+            return Redirect::back()->withMessage('Error occured Inclusion Name Already Exists!'); 
           }
         }
    }
@@ -44,20 +45,17 @@ class InclusionsController extends Controller
    //----------------------update update inclusions-----------------------
    public function updateInclusion(Request $request)
    {
-       if($request->get('category_name')) {      
-           $category = Inclusions::where('category_name' , '=', $request->get('category_name'))->first();  //--get coupon by coupon code--//
-          if($category==NULL  OR $category->category_name!=$request->get('category_name'))
-          {    
-            $category = new Inclusions();
-            $category->category_name  = $request->input('category_name');        
-            $category->created_at      = date("Y-m-d H:i:s");
-            $category->updated_at     = date("Y-m-d H:i:s");
-            $category->save();
-            return Redirect::back()->withMessage('Inclusions Successfuly Created.'); 
-          }else
-          {                    
-            return Redirect::back()->withMessage('Error occured Category Name Already Exists!'); 
-          }
+       $inclusions = Inclusions::find($request->input('inclusion_id'));
+        if($inclusions)
+        {            
+            $inclusions->name  = $request->input('inclusion_name');    
+            $inclusions->descp  = $request->input('description');
+            $inclusions->updated_at     = date("Y-m-d H:i:s");
+            $inclusions->save();
+           return Redirect::back()->withMessage('Inclusion Successfuly Updated.');
+        }else
+        {
+           return Redirect::back()->withMessage('Error Occured Try again later.'); 
         }
    }
    
