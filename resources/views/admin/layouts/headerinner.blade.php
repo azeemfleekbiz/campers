@@ -136,7 +136,7 @@
           
           <footer class="main-footer">
     
-              <strong>Copyright &copy; 2018 <a href="http://www.fleekbiz.com/" target="_blank">FleekBiz</a>.</strong> All rights
+              <strong>Copyright &copy; 2018 <a href="http://www.campers.com/" target="_blank">Campers</a>.</strong> All rights
     reserved.
   </footer>
 

@@ -26,15 +26,31 @@
           <ul class="treeview-menu">             
             <li class="active"><a href="{{ url('/admin/cities') }}"><i class="fa fa-circle-o"></i>Cities</a></li>
             <li><a href="{{ url('/admin/companies') }}"><i class="fa fa-circle-o"></i> Companies</a></li>    
+            <li><a href="{{ url('/admin/cities-companies') }}"><i class="fa fa-circle-o"></i> Cities and Companies</a></li>
             <li><a href="{{ url('/admin/categories') }}"><i class="fa fa-circle-o"></i> Categories</a></li>
             <li><a href="{{ url('/admin/inclusions') }}"><i class="fa fa-circle-o"></i> Inclusions</a></li>  
             <li><a href="{{ url('/admin/equipments') }}"><i class="fa fa-circle-o"></i> Equipments</a></li>
             <li><a href="{{ url('/admin/additional-services') }}"><i class="fa fa-circle-o"></i> Additional Services</a></li>
             <li><a href="{{ url('/admin/currencies') }}"><i class="fa fa-circle-o"></i> Currencies</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="">
+            <i class="fa fa-first-order" aria-hidden="true"></i> <span>Campers Seasons</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>     
+            <ul class="treeview-menu">             
+            <li class="active"><a href="{{ url('/admin/seasons') }}"><i class="fa fa-circle-o"></i>Seasons</a></li>
+            
             
             
           </ul>
-        </li>
+        </li>   
+        
+        
         
         
         <li>

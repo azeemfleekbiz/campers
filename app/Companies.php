@@ -13,4 +13,15 @@ class Companies extends Model
     protected $created_at;
     protected $updated_at;
     public $timestamps = false; // for false updated_at and created_at
+    
+    
+    //------------------------------one to many relationship with Seasons---------------------
+    public function comapyseason() {
+        return $this->hasMany('\App\Seasons','id');
+   }
+   
+   //------------------------------one to many relationship with Cites---------------------
+    public function companycity() {
+        return $this->hasMany('\App\CompanyCities','id');
+   }
 }
