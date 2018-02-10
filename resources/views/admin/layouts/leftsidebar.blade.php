@@ -44,11 +44,22 @@
           </a>     
             <ul class="treeview-menu">             
             <li class="active"><a href="{{ url('/admin/seasons') }}"><i class="fa fa-circle-o"></i>Seasons</a></li>
-            
-            
-            
+            <li class="active"><a href="{{ url('/admin/seasons-rates') }}"><i class="fa fa-circle-o"></i>Seasons Rates</a></li>            
           </ul>
-        </li>   
+        </li>  
+        
+        <li class="treeview">
+          <a href="">
+            <i class="fa fa-first-order" aria-hidden="true"></i> <span>Campers Vehicles</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>     
+            <ul class="treeview-menu">             
+            <li class="active"><a href="{{ url('/admin/vehicles') }}"><i class="fa fa-circle-o"></i>Vehicles</a></li>
+            <li class="active"><a href="{{ url('/admin/seasons-rates') }}"><i class="fa fa-circle-o"></i>Seasons Rates</a></li>            
+          </ul>
+        </li>
         
         
         

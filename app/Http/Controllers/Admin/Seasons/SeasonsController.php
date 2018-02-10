@@ -78,7 +78,7 @@ class SeasonsController extends Controller
            return redirect('admin/seasons')->withMessage('Season Successfuly updated.');   
        }else
        {
-           return redirect('admin/seasons')->withMessage('Season does not exists.');    
+           return redirect('admin/seasons')->withErrors('Season does not exists.');    
        }
        
    }
@@ -86,7 +86,9 @@ class SeasonsController extends Controller
    //-------------------------------delete season------------------------
    public function destroy($season_id)
    {
-       
+       $season = Seasons::find($season_id);   
+       $season->delete();     
+       return Redirect::back()->withMessage('Season Successfuly deleted.'); 
    }
    
    //------------------------get companies by cities--------------------
@@ -112,7 +114,19 @@ class SeasonsController extends Controller
    
    public function getCompaniesCity(Request $request)
    {
-       print_r("hi");
+      $city_id = $request->input('city_id');
+       $companies = DB::table('camp_company_cities')
+            ->join('camp_city', 'camp_city.id', '=', 'camp_company_cities.city_id')
+            ->join('camp_company', 'camp_company.id', '=', 'camp_company_cities.company_id')
+            ->select('camp_company_cities.id','camp_company_cities.city_id','camp_company_cities.company_id', 'camp_city.city_name', 'camp_company.company_name')->where('camp_company_cities.city_id','=',$city_id)
+            ->get();   
+      if($companies)
+      {
+          return response()->json($companies);
+      }else
+      {
+          return '';
+      }
    }
    
 }

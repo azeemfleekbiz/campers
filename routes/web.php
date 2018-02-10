@@ -106,11 +106,26 @@ Route::prefix('admin')->group(function(){
     
     Route::get('/seasons/edit-season/{slug}',  'Admin\Seasons\SeasonsController@updateSeason');  //get edit Season Form
     
-    Route::post('/seasons/update',  'Admin\Seasons\SeasonsController@updates');  //get edit Season Form
+    Route::post('/seasons/update',  'Admin\Seasons\SeasonsController@update');  //get edit Season Form
     
     Route::post('/seasons/get-company',  'Admin\Seasons\SeasonsController@getCompaniesCity');  //get Season Form
     
+    Route::get('/seasons/destroy/{slug}', 'Admin\Seasons\SeasonsController@destroy');//delete Seasons
+    
+    Route::get('/seasons-rates',  'Admin\SeasonsPrices\SeasonsPriceController@index');  //get Seasons rates list
+    
+    Route::get('/seasons-rates/add-season-rate',  'Admin\SeasonsPrices\SeasonsPriceController@addSeasonRate');  //get Season rates Form
+    
+    Route::post('/seasons-rates/create',  'Admin\SeasonsPrices\SeasonsPriceController@create');  //save Season rates 
+    
+    Route::post('/seasons-rates/get-season-companies',  'Admin\SeasonsPrices\SeasonsPriceController@getCompaniesByCity');  //get Season Form
+    
+    Route::post('/seasons-rates/get-companies-season',  'Admin\SeasonsPrices\SeasonsPriceController@getCompaniesSeasons');  //get Season Form    
    
+    Route::get('/seasons-rates/edit-season-rate/{slug}',  'Admin\SeasonsPrices\SeasonsPriceController@updateSeasonRates');  //get Season rates Form
+    
+    Route::post('/seasons-rates/update',  'Admin\SeasonsPrices\SeasonsPriceController@update');
+    
     Route::get('/change-password', 'Admin\AdminController@changePassword');
     
     Route::get('/logout', 'Admin\AdminController@adminLogout');
