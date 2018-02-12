@@ -127,7 +127,7 @@
 
                                     <div class="col-sm-9">
                                         <select name="vehicle_type" class="form-control">
-                                            <option value="Manual" @if ($vehicle->v_type == 'Manual') selected="selected"  @endif selected="selected">Manual </option>                    
+                                            <option value="Manual" @if ($vehicle->v_type == 'Manual') selected="selected"  @endif >Manual </option>                    
                                             <option value="Automatic" @if ($vehicle->v_type == 'Automatic') selected="selected"  @endif>Automatic </option>                   
 
                                         </select>
@@ -207,7 +207,29 @@
                             </div>
                         </div>
                     </div>
+<div class="col-md-6">                    
+                    <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Featured</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <div class="box-body">
+                                <div class="form-group">
+                                    
 
+                                    <div class="col-sm-10">
+                                        <input type="radio" name="is_featued" value="yes" @if ($vehicle->is_featued == 'yes') checked="checked"  @endif>Yes
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="radio" name="is_featued" value="no" @if ($vehicle->is_featued == 'no') checked="checked"  @endif>No
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="col-md-6">
                         <!-- general form elements -->

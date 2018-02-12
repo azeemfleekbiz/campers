@@ -128,7 +128,7 @@
     if(city_id){
         $.ajax({
            type:"POST",
-           url:"get-season-companies",
+           url:"../seasons/get-companies",
            data: {city_id: city_id,_token:_token},
            success:function(res){               
             if(res){
@@ -158,12 +158,12 @@
     if(company_id){
         $.ajax({
            type:"POST",
-           url:"get-companies-season",
+           url:"../vehicles/get-seasons",
            data: {company_id: company_id,_token:_token},
            success:function(res){               
             if(res){
                 $("#season_id").empty();
-               $("#season_id").append('<option>Select Company</option>');
+               $("#season_id").append('<option>Select Season</option>');
                $.each(res,function(key,value){
                    $("#season_id").append('<option value="'+value['id']+'">'+value["season_name"]+'</option>');
                 });

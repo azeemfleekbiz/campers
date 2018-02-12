@@ -27,6 +27,7 @@ class Vehicles extends Model
     protected $inclusion_id;
     protected $v_images;       
     protected $status;
+    protected $is_featued;    
     protected $created_at;
     protected $updated_at;
     public $timestamps = false; // for false updated_at and created_at

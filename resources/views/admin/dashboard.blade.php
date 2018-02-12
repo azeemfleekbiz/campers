@@ -16,7 +16,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3></h3>
+              <h3>{{$cities}}</h3>
 
               <p>Cities</p>
             </div>
@@ -31,7 +31,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3><sup style="font-size: 20px"></sup></h3>
+              <h3>{{$comapnies}}<sup style="font-size: 20px"></sup></h3>
 
               <p>Companies</p>
             </div>
@@ -46,7 +46,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3></h3>
+              <h3>{{$inclusion}}</h3>
 
               <p>Inclusions</p>
             </div>
@@ -60,7 +60,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3></h3>
+              <h3>{{$equipments}}</h3>
 
               <p>Equipments</p>
             </div>
@@ -75,7 +75,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3></h3>
+              <h3>{{$services}}</h3>
 
               <p>Additional Services</p>
             </div>
@@ -90,14 +90,30 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3></h3>
+              <h3>{{$seasons}}</h3>
 
-              <p>Vehicle Types</p>
+              <p>Season</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="{{ url('/admin/vehicle-types') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('/admin/seasons') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        
+        
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>{{$vehicles}}</h3>
+
+              <p>Vehicles</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="{{ url('/admin/vehicles') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         

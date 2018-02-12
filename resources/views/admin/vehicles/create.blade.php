@@ -188,7 +188,29 @@
                         </div>
                     </div>
 
-                    
+                    <div class="col-md-6">                    
+                    <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Featured</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <div class="box-body">
+                                <div class="form-group">
+                                    
+
+                                    <div class="col-sm-10">
+                                        <input type="radio" name="is_featued" value="yes">Yes
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="radio" name="is_featued" value="no" checked="checked">No
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <!-- general form elements -->
                         <div class="box box-primary">
@@ -232,7 +254,7 @@
 					    <input name="equipment[]" class="myCheckboxes" value="{{$equiment->id}}" type="checkbox">
 					</span>
 					<span class="input-group-addon bg-green-gradient">{{$equiment->name}} </span>
-					    <input type="text" name="equipment_fees[]" class="form-control" value="{{$equiment->amount}}" placeholder="Enter Price">
+					    <input type="number" name="equipment_fees[]" class="form-control" value="{{$equiment->amount}}" placeholder="Enter Price">
 					</div>                                    
                                        @endforeach
                                 </div>
@@ -276,7 +298,7 @@
 					    <input name="service[]" class="myCheckboxes" value="{{$service->id}}" type="checkbox">
 					</span>
 					<span class="input-group-addon bg-green-gradient">{{$service->name}} </span>
-					    <input type="text" name="service_fees[]" class="form-control" value="{{$service->amount}}" placeholder="Enter Price">
+					    <input type="number" name="service_fees[]" class="form-control" value="{{$service->amount}}" placeholder="Enter Price">
 					</div> 
                                     
                                        @endforeach

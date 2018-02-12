@@ -101,6 +101,7 @@ class VehiclesController extends Controller
            $vehicle->service_id         = implode(",",$request->input('service')) ;
            $vehicle->inclusion_id       = implode(",",$request->input('inclusion'));
            $vehicle->status             = 1;
+           $vehicle->is_featued         = $request->input('is_featued');         
            $vehicle->created_at         = date("Y-m-d H:i:s");
            $vehicle->updated_at         = date("Y-m-d H:i:s");
            $vehicle->v_images           = Input::hasFile('sample_logos') ? implode(",",$sample_images_arr) : '';
@@ -179,12 +180,13 @@ class VehiclesController extends Controller
            $vehicle->v_toll_fee         = $request->input('toll_fee');
            $vehicle->v_dep_fee          = $request->input('deployment_fee');
            $vehicle->currency_id        = $request->input('currency');
+           $vehicle->is_featued         = $request->input('is_featued');
            $vehicle->category_id        = implode(",",$request->input('category')) ;
            $vehicle->equipments         = implode(",",$request->input('equipment')) ;
            $vehicle->service_id         = implode(",",$request->input('service')) ;
            $vehicle->inclusion_id       = implode(",",$request->input('inclusion'));            
            $vehicle->updated_at         = date("Y-m-d H:i:s");
-           $vehicle->v_images           = Input::hasFile('sample_logos') ? implode(",",$sample_images_arr) : '';
+           $vehicle->v_images           = Input::hasFile('sample_logos') ? implode(",",$sample_images_arr) : $vehicle->v_images;
            $vehicle->save();
            return redirect('admin/vehicles')->withMessage('Vehicle Successfully updated');
         } else {
