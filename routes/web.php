@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//FRONTEND
+Route::get('/', ['uses' => 'PagesController@homeVersion']);
+Route::get('satellitephone', ['uses' => 'PagesController@satellitephone']);
+Route::get('travelinsurance', ['uses' => 'PagesController@tavelinsurance']);
+Route::get('payments', ['uses' => 'PagesController@payments']);
+Route::get('contact', ['uses' => 'PagesController@contact']);
+Route::get('search', ['uses' => 'PagesController@search']);
+Route::get('faredetails', ['uses' => 'PagesController@faredetails']);
+Route::get('booking', ['uses' => 'PagesController@booking']);
+Route::post('order', ['uses' => 'PagesController@ordernow']);
+Route::post('search', ['uses' => 'PagesController@searchingForm']);
+
 Route::get('/admin/dashboard', 'Admin\AdminController@index');
 
 Route::prefix('admin')->group(function(){    
