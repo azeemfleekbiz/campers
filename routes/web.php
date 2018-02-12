@@ -125,6 +125,22 @@ Route::prefix('admin')->group(function(){
     Route::get('/seasons-rates/edit-season-rate/{slug}',  'Admin\SeasonsPrices\SeasonsPriceController@updateSeasonRates');  //get Season rates Form
     
     Route::post('/seasons-rates/update',  'Admin\SeasonsPrices\SeasonsPriceController@update');
+   
+    Route::get('/vehicles',  'Admin\Vehicles\VehiclesController@index');  //get Seasons list
+    
+    Route::get('/vehicles/add-vehicle',  'Admin\Vehicles\VehiclesController@createVehichle');  //Add New Vehicle
+    
+    Route::post('/vehicles/create',  'Admin\Vehicles\VehiclesController@create');  //Add New Vehicle
+    
+    Route::post('/vehicles/get-seasons',  'Admin\Vehicles\VehiclesController@getSeasonByCompanies');  //get Season Form
+    
+    Route::post('/vehicles/get-seasons-rates',  'Admin\Vehicles\VehiclesController@getSeasonRatesBySeason');  //get Season Form
+    
+    Route::get('/vehicles/edit-vehicle/{slug}',  'Admin\Vehicles\VehiclesController@updateVehicle');  //Add New Vehicle
+    
+    Route::post('/vehicles/update',  'Admin\Vehicles\VehiclesController@update');  //Add New Vehicle
+    
+    Route::get('/vehicles/destroy/{slug}', 'Admin\Vehicles\VehiclesController@destroy');//delete Seasons
     
     Route::get('/change-password', 'Admin\AdminController@changePassword');
     

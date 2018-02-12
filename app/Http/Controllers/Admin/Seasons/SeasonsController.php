@@ -98,7 +98,7 @@ class SeasonsController extends Controller
        $companies = DB::table('camp_company_cities')
             ->join('camp_city', 'camp_city.id', '=', 'camp_company_cities.city_id')
             ->join('camp_company', 'camp_company.id', '=', 'camp_company_cities.company_id')
-            ->select('camp_company_cities.id','camp_company_cities.city_id','camp_company_cities.company_id', 'camp_city.city_name', 'camp_company.company_name')->where('camp_company_cities.city_id','=',$city_id)
+            ->select('camp_company.id','camp_company_cities.city_id','camp_company_cities.company_id', 'camp_city.city_name', 'camp_company.company_name')->where('camp_company_cities.city_id','=',$city_id)
             ->get();   
       if($companies)
       {

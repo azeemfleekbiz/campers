@@ -57,7 +57,7 @@
           </a>     
             <ul class="treeview-menu">             
             <li class="active"><a href="{{ url('/admin/vehicles') }}"><i class="fa fa-circle-o"></i>Vehicles</a></li>
-            <li class="active"><a href="{{ url('/admin/seasons-rates') }}"><i class="fa fa-circle-o"></i>Seasons Rates</a></li>            
+            
           </ul>
         </li>
         

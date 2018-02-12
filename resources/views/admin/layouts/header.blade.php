@@ -27,7 +27,7 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   
-  <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/css/main.css') }}">
 
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

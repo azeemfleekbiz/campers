@@ -26,6 +26,9 @@
 <script src="{{asset('public/dist/js/adminlte.min.js')}}"></script>
 <script src="{{asset('public/dist/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('public/dist/js/demo.js')}}"></script>
+<script type="text/javascript" src="{{ asset('public/js/jquery.mask.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/main.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/jscolor.js') }}"></script>
 </body>
 </html>
 
