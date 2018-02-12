@@ -25,6 +25,7 @@ Route::get('search', ['uses' => 'PagesController@search']);
 Route::get('faredetails', ['uses' => 'PagesController@faredetails']);
 Route::get('booking', ['uses' => 'PagesController@booking']);
 Route::post('order', ['uses' => 'PagesController@ordernow']);
+Route::post('search', ['uses' => 'PagesController@searchingForm']);
 
 Route::get('/admin/dashboard', 'Admin\AdminController@index');
 

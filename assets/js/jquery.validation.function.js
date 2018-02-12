@@ -51,3 +51,20 @@ error: function () {
 }
 });	
 }
+    jQuery(document).ready(function() {
+       jQuery("#popup-slider").owlCarousel({
+        items : 1,
+        lazyLoad : true,
+        slideSpeed : 2000,
+		paginationSpeed :2000,
+		lazyLoad : true,
+		stopOnHover : true,
+		autoPlay : true,
+		pagination:false,
+		navigation:true,
+		itemsDesktop : [1170,1], //5 items between 1000px and901px 
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px 
+		itemsTablet: [600,1], //2 items between 600 and 0 
+		itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option       
+      });
+    });

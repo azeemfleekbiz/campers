@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Redirect;
+use App\Cities;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -12,8 +13,9 @@ class PagesController extends Controller
 {
     public function homeVersion()
     {
-    	$home = 'home';
-      return view('pages.'.$home);
+      $home = 'home';
+      $cities = DB::table('camp_city')->get();
+      return view('pages.'.$home)->with('cities',$cities);
     }
 
     public function satellitephone(){
@@ -94,5 +96,10 @@ class PagesController extends Controller
         // $mail = mail($to,$subject,$message,$headers);
 
         return 'done';
+    }
+
+    public function searchingForm(Request $request){
+        $search = 'search';
+        return view('pages.'.$search);
     }
 }

@@ -12,10 +12,13 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="{{ asset('assets/css/owl.carousel.css') }}" type="text/css" rel="stylesheet" />
+<link href="{{ asset('assets/css/owl.theme.css') }}" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/custom.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/jquery.validate.js') }}"></script>
+<script src="{{ asset('assets/js/owl.carousel.js') }}"></script>
 </head>
 <body>
 <nav class="navbar navbar-default bg-black">

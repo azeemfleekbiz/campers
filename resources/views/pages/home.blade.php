@@ -12,7 +12,8 @@
 <div class="bg-black vehicle-section">
 <div class="container">
 <div class="row">
-<form action="#" class="search_form" method="post">
+<form name="searchForm" id="searchForm" action="{{ url('/search') }}" class="search_form" method="post">
+{{csrf_field()}}	
 <div class="col-md-2 col-xs-12 col-md-offset-1">
 <h3>Select Your Vehicle</h3>
 </div>
@@ -34,15 +35,18 @@
 </div>
 <div class="col-md-3 col-xs-12">
 <label class="pick-location">Pick-Up Location</label>
-<select name='pick_loc' required class="form-control"><option value=''>Select City</option>
-<option value="1">Windhoek</option><option value="2">Johannesburg </option><option value="3">Kapstadt</option> 
+<select name='pick_loc' required class="form-control">
+<option value=''>Select City</option>
+@foreach($cities as $city)
+<option value="{{$city->id}}">{{$city->city_name}}</option>
+@endforeach;
 </select>
 <label class="drop-location">Drop-Off Location</label>
 <select name='drop_loc' required class="form-control">
 <option value=''>Select City</option>
-<option value="1">Windhoek</option>
-<option value="2">Johannesburg </option>
-<option value="3">Kapstadt</option>
+@foreach($cities as $city)
+<option value="{{$city->id}}">{{$city->city_name}}</option>
+@endforeach;
 </select>
 </div>
 <div class="col-md-2 col-xs-12">
@@ -179,7 +183,19 @@ Für diejenigen, die sich gerne im eigenen 4x4 Camper einer geführten Gruppe an
 </div>
 <div class="modal-body">
 <p>This is Test 1</p>
-<img src="assets/images/car-1.jpg" class="img-responsive">
+
+<div id="popup-slider">
+	<div class="item">
+		<img src="assets/images/car-1.jpg" class="img-responsive">
+	</div>
+	<div class="item">
+		<img src="assets/images/car-1.jpg" class="img-responsive">
+	</div>
+	<div class="item">
+		<img src="assets/images/car-1.jpg" class="img-responsive">
+	</div>
+</div>
+
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

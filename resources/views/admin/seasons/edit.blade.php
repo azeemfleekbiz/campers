@@ -117,7 +117,7 @@
     if(city_id){
         $.ajax({
            type:"POST",
-           url:"get-company",
+           url:"../get-company",
            data: {city_id: city_id,_token:_token},
            success:function(res){               
             if(res){
