@@ -51,20 +51,51 @@ error: function () {
 }
 });	
 }
-    jQuery(document).ready(function() {
-       jQuery("#popup-slider").owlCarousel({
-        items : 1,
-        lazyLoad : true,
-        slideSpeed : 2000,
-		paginationSpeed :2000,
-		lazyLoad : true,
-		stopOnHover : true,
-		autoPlay : true,
-		pagination:false,
-		navigation:true,
-		itemsDesktop : [1170,1], //5 items between 1000px and901px 
-		itemsDesktopSmall : [900,1], // betweem 900px and 601px 
-		itemsTablet: [600,1], //2 items between 600 and 0 
-		itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option       
-      });
-    });
+
+$(document).on("click", ".services", function () {
+var _token = $( "input[name*='_token']" ).val();	
+var amount = $('#amount').val();
+var arr = $('.services:checked').map(function () {
+         return this.value;
+     }).get();	
+$.ajax({
+url: "../fare_addservices",
+data: {arr:arr,amount:amount,_token:_token},
+type: 'POST',
+beforeSend: function () {
+},
+success: function (result) {
+	$("#amn_tolt").html(result);
+	document.getElementById('total_amount').value = result;
+},
+error: function () {
+	$("#amn_tolt").html(amount);
+	document.getElementById('total_amount').value = amount;
+}
+});	
+});
+
+$(document).on("click", ".books", function () {
+var vehicle_id = $('#vehicle_id').val();
+var total_amount = $('#total_amount').val();
+var _token = $( "input[name*='_token']" ).val();
+var addl_service_array = $('.serv:checked').map(function () {
+         return $(this).attr("serid");
+     }).get();
+var equipment_array = $('.equip:checked').map(function () {
+         return $(this).attr("equid");
+     }).get();
+$.ajax({
+url: "../booknow",
+data: {vehicle_id:vehicle_id,total_amount:total_amount,addl_service_array:addl_service_array,equipment_array:equipment_array,_token:_token},
+type: 'POST',
+beforeSend: function () {
+},
+success: function (result) {
+window.location.href = 'http://localhost/campers/booking/'+result;
+},
+error: function () {
+window.location.href = 'http://localhost/campers/booking/'+result;
+}
+});	
+});

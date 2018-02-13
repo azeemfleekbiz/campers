@@ -22,10 +22,12 @@ Route::get('travelinsurance', ['uses' => 'PagesController@tavelinsurance']);
 Route::get('payments', ['uses' => 'PagesController@payments']);
 Route::get('contact', ['uses' => 'PagesController@contact']);
 Route::get('search', ['uses' => 'PagesController@search']);
-Route::get('faredetails', ['uses' => 'PagesController@faredetails']);
-Route::get('booking', ['uses' => 'PagesController@booking']);
+Route::get('faredetails/{id}', ['uses' => 'PagesController@faredetails']);
+Route::get('booking/{id}', ['uses' => 'PagesController@booking']);
 Route::post('order', ['uses' => 'PagesController@ordernow']);
 Route::post('search', ['uses' => 'PagesController@searchingForm']);
+Route::post('fare_addservices', ['uses' => 'PagesController@fare_addservices']);
+Route::post('booknow', ['uses' => 'PagesController@booknow']);
 
 Route::get('/admin/dashboard', 'Admin\AdminController@index');
 
