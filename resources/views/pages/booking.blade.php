@@ -15,115 +15,93 @@
 <div class="row" >
 <div class="col-md-4 bg-success book-yourself">
 <h3>INVOICE</h3>
-<img class="center-block col-md-12 padding-zero img-responsive" src="assets/images/car-2.jpg">
+<?php $imgs = explode(",",$vehicles->v_images); ?>
+<img class="center-block col-md-12 padding-zero img-responsive" src="../public/uploads/vehicles/<?php echo $imgs[0]; ?>">
 <input type="hidden" name="vehicle_img" value="Britz 4x4 Trax Nissan Camper.png"/>
-<h1 class="clearfix col-md-12">Bobocamper Discoverer 4</h1>
+<h1 class="clearfix col-md-12">{{$vehicles->v_name}}</h1>
 <input type="hidden" name="vehicle_title" value="Bobocamper Discoverer 4"/>
 <table  class="table booking-yourself">
 <tbody>
 <tr>
-<th>Country</th>
-<td>USA</td>
-</tr>                
-<tr>
-<th>From</th>
-<td>Windhoek</td>
-<td hidden><a href="#"><i  class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i></a></td>
-<input type="hidden" name="pick_loc" value="Windhoek"/>
+<th>Company</th>
+<td>{{$company->company_name}}</td>
 </tr>
 <tr>
-<th>To</th>
-<td>Johannesburg </td>
-<td hidden><a href="#"><i hidden class="fa fa-pencil-square-o pull-right" aria-hidden="true"></i></a></td>
-<input type="hidden" name="drop_loc" value="Johannesburg "/>
-</tr>                
+<th>City</th>
+<td>{{$city->city_name}}</td>
+</tr>
+<tr>
+<th>Person</th>
+<td>{{$vehicles->v_person}}</td>
+</tr>
 <tr>
 <th>From</th>
-<td>02/09/2018</td>
-<td><a href="#"></a></td>
-<input type="hidden" name="pick_date" value="02/09/2018"/>
+<td>{{$season->start_date}}</td>
 </tr>                
 <tr>
 <th>Until</th>
-<td>02/28/2018</td>
-<td><a href="#"></a></td>
-<input type="hidden" name="drop_date" value="02/28/2018"/>
-</tr>   
-<tr hidden>
-<th>Vehicle</th>
-<td>19</td>
-<td><a href="#"><i class="fa fa-info-circle pull-right" aria-hidden="true"></i></a></td>
-</tr>
-<tr hidden>
-<th>Company</th>
-<td>19</td>
-</tr>
+<td>{{$season->end_date}}</td>
+</tr>                
 <tr>
-<td colspan="3" class="text-right"> <span class="badge badge-success"> </span> On Request <a href="#"><i class="fa fa-info-circle" aria-hidden="true" title="This is testing"></i></td>
+<td colspan="3" class="text-right"> <span class="badge badge-success"> </span> On Request <i class="fa fa-info-circle " aria-hidden="true"></i></td>
 </tr>
 <tr>
 <td colspan="3"> <hr> </td>
 </tr>
 <tr>
-<td>Per Day Price</td>                            
-<td colspan="2" class="text-right"><i class="fa fa-eur" aria-hidden="true"></i>2</td>
+<td>Season</td>                            
+<td colspan="2" class="text-right">{{$season->season_name}}</td>
 </tr>                
 <tr>
-<td>Rental Price</td>                           
-<td colspan="2" class="text-right"><i class="fa fa-eur" aria-hidden="true"></i>38</td>
-<input type="hidden" name="rent_price" value="38"/>
+<td>Season Rental Price</td>                           
+<td colspan="2" class="text-right"><i class="fa fa-eur" aria-hidden="true"></i>{{$season->season_rate}}</td>
 </tr>  
 <tr>
 <td colspan="1"><h4 class="rental-price">Rental Price<br>(payable upon booking)</h4></td>
-<td colspan="2"><h4 class="rental-price"><i class="fa fa-eur pull-right" aria-hidden="true"> 38</i></h4></td>
-<input type="hidden" name="rent_price_payble1" value="38"/>
-</tr>  
-<input type="hidden" name="one_way" value=""/>						
+<td colspan="2"><h4 class="rental-price"><i class="fa fa-eur pull-right" aria-hidden="true"> {{$season->season_rate}}</i></h4></td>
+</tr>                
+<tr>
+<td colspan="3"> <hr> </td>
+</tr>
+<?php if(isset($bookaddservices)): ?>
 <tr class="equipment_ajax">
 <td colspan="3"><h4 class="extra-charges"> Additional Services</h4></td>
-</tr><tr class="space"><td colspan="2">Extra Driver Fee</td><td class="text-right">2</td></tr><input type='hidden' name='addl_services_title[]' value='Extra Driver Fee'/><input type='hidden' name='addl_services_fees[]' value='2'/>					
-<tr>
-<td colspan="3"> <hr> </td>
-</tr>
-<tr>
-<td colspan="1"><h4 class="total-price">Total Price</h4></td>
-<td colspan="2"><h4 class="margin_zero text-right"><i class="fa fa-eur" aria-hidden="true"></i> 40</h4></td>
-<input type="hidden" name="rent_price_payble" value="40"/>
-</tr>
-<tr>
-<td colspan="3">A deposit of 20% is paypable at the time of the booking confirmation, the remaining balance 6 weeks prior to travel.</td>
-</tr>
-<tr>
-<td colspan="3"> <hr> </td>
-</tr>
+</tr>	
+<?php
+foreach($bookaddservices as $bookadserv):
+?>
+<tr class="space">
+<td colspan="2"><?php echo $bookadserv->name; ?></td>
+<td class="text-right"><i class="fa fa-eur" aria-hidden="true"></i><?php echo $bookadserv->amount; ?></td>
+</tr>		
+<?php endforeach; endif; ?>
+<?php if(isset($bookaddequipment)): ?>
+<tr class="equipment_ajax">
+<td colspan="3"><h4 class="extra-charges"> Additional Equipment</h4></td>
+</tr>	
+<?php
+foreach($bookaddequipment as $bookequip):
+?>
+<tr class="space">
+<td colspan="2"><?php echo $bookequip->name; ?></td>
+<td class="text-right"><i class="fa fa-eur" aria-hidden="true"></i><?php echo $bookequip->amount; ?></td>
+</tr>		
+<?php endforeach; endif; ?>
 <tr>
 <td colspan="3"><h4 class="extra-charges"> Extra Charges </h4></td>
 </tr>
 <tr>
 <td>Toll Fee</td>
 <td colspan="2" class="text-right ">Approx. <i class="fa fa-eur" aria-hidden="true">
-200</i></td>
-<input type="hidden" name="toll_fee" value="200"/>
+{{$vehicles->v_toll_fee}}</i></td>
 </tr>
 <tr>
 <td>Deployment Fee</td>
-<td colspan="2" class="text-right ">Approx. <i class="fa fa-eur" aria-hidden="true"></i> 555</td>
-<input type="hidden" name="deployment_fee" value="555"/>
+<td colspan="2" class="text-right ">Approx. <i class="fa fa-eur" aria-hidden="true"></i> {{$vehicles->v_dep_fee}}</td>
 </tr>
 <tr>
 <td colspan="2"><h4 class="rental-price">Total Extras<br>(payable locally)</h4></td>
-<td><h4 class="rental-price"><i class="fa fa-eur pull-right" aria-hidden="true"> 755 </i></h4></td>
-<input type="hidden" name="total_extras" value=""/>
-</tr>
-<tr>
-<td colspan="3"><h4 class="extra-charges"> Fees and Taxes  </h4></td>
-</tr>
-<tr><td>Gauteng Road Tax</td><td colspan="2" class="text-right">Approx. <i class="fa fa-eur" aria-hidden="true"> 500</td><tr><td>CO2 Tax</td><td colspan="2" class="text-right">Approx. <i class="fa fa-eur" aria-hidden="true"> 111</td>					<tr>
-<td colspan="3"> <hr> </td>
-</tr>
-<tr>
-<td colspan="2"><h4 class="rental-price">Directly Payable to the <br>(Rental company)</h4></td>
-<td class="width"><h4 class="rental-price"><i class="fa fa-eur pull-right" aria-hidden="true"> 611 </i></h4></td>
+<td><h4 class="rental-price"><i class="fa fa-eur pull-right" aria-hidden="true"> {{$bookings->totl_amount}} </i></h4></td>
 </tr>
 </tbody>
 </table>

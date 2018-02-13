@@ -8,9 +8,12 @@ class BookingOrders extends Model
 {
     protected $table = 'camp_vechicle_booking';
     protected $primaryKey = 'id';
-    protected $fillable   = ['vechicle_id','salutation','f_name','l_name','dob','address','post_code','city','country','phone','email','other_contacts'];   
+    protected $fillable   = ['vechicle_id'];   
     protected $equipment_id;    
     protected $vehicle_id;
+    protected $services;
+    protected $equipments;
+    protected $totl_amount;
     protected $salutation;
     protected $f_name;
     protected $l_name;

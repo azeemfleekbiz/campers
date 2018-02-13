@@ -20,14 +20,14 @@
 <div class="col-md-3 col-xs-12">
 <label for="from" class="pick-date">Pick-up Date</label>
 <div class="input-group date"> 
-<input type="text" class="form-control " placeholder="Select Date" id="from" name="pick_date" aria-describedby="basic-addon2"> 
+<input type="text" class="form-control " placeholder="Select Date" id="pick_date" name="pick_date" aria-describedby="basic-addon2"> 
 <span class="input-group-addon btn_icon" id="basic-addon2">
 <i class="fa fa-calendar-o" aria-hidden="true"></i>
 </span> 
 </div>			
 <label for="to" class="return-date">Return Date</label>					
 <div class="input-group date"> 
-<input type="text" class="form-control " placeholder="Select Date" id="to" name="drop_date" aria-describedby="basic-addon2"> 
+<input type="text" class="form-control " placeholder="Select Date" id="drop_date" name="drop_date" aria-describedby="basic-addon2"> 
 <span class="input-group-addon btn_icon_drop" id="basic-addon2">
 <i class="fa fa-calendar-o" aria-hidden="true"></i>
 </span> 
@@ -35,14 +35,14 @@
 </div>
 <div class="col-md-3 col-xs-12">
 <label class="pick-location">Pick-Up Location</label>
-<select name='pick_loc' required class="form-control">
+<select name='pick_loc' id="pick_loc" required class="form-control">
 <option value=''>Select City</option>
 @foreach($cities as $city)
 <option value="{{$city->id}}">{{$city->city_name}}</option>
 @endforeach;
 </select>
 <label class="drop-location">Drop-Off Location</label>
-<select name='drop_loc' required class="form-control">
+<select name='drop_loc' id="drop_loc" required class="form-control">
 <option value=''>Select City</option>
 @foreach($cities as $city)
 <option value="{{$city->id}}">{{$city->city_name}}</option>
@@ -101,9 +101,17 @@ Für diejenigen, die sich gerne im eigenen 4x4 Camper einer geführten Gruppe an
 </div>
 </div>
 <div class="resp-slider row">
-    @foreach($vehicles as $vehicle)
+@foreach($vehicles as $vehicle)
 <div class="col-md-4 col-xs-12">
-<img src="{{asset('/public/uploads/vehicles/vehicle-1.jpg')}}" class="img-responsive">
+<?php	
+$imgs = explode(",",$vehicle->v_images);
+for($i=0;$i<count($imgs);$i++):
+if($i==1){
+	break;
+}
+?>
+<img src="public/uploads/vehicles/<?php echo $imgs[$i]; ?>" class="img-responsive">
+<?php endfor; ?>
 <div class="bg-red">
 <h5>{{$vehicle->v_name}}</h5>
 </div>
@@ -122,32 +130,26 @@ Für diejenigen, die sich gerne im eigenen 4x4 Camper einer geführten Gruppe an
 </div>
 </div>
 <div class="bg-black vehicle-button">
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vehicle Description</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$vehicle->id}}">Vehicle Description</button>
 </div>
 </div>
-    @endforeach
-     <div id="myModal" class="modal fade" role="dialog">
+
+<div id="myModal{{$vehicle->id}}" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title">Modal Header</h4>
+<h4 class="modal-title">{{$vehicle->v_name}}</h4>
 </div>
 <div class="modal-body">
 <p></p>
-
-<div id="popup-slider">
+<div id="popup-slider{{$vehicle->id}}">
+<?php for($j=0;$j<count($imgs);$j++): ?>	
 	<div class="item">
-		<img src="assets/images/car-1.jpg" class="img-responsive">
+		<img src="public/uploads/vehicles/<?php echo $imgs[$j]; ?>" class="img-responsive">
 	</div>
-	<div class="item">
-		<img src="assets/images/car-1.jpg" class="img-responsive">
-	</div>
-	<div class="item">
-		<img src="assets/images/car-1.jpg" class="img-responsive">
-	</div>
+<?php endfor; ?>	
 </div>
-
 </div>
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -155,6 +157,26 @@ Für diejenigen, die sich gerne im eigenen 4x4 Camper einer geführten Gruppe an
 </div>
 </div>
 </div>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+jQuery("#popup-slider{{$vehicle->id}}").owlCarousel({
+items : 1,
+lazyLoad : true,
+slideSpeed : 2000,
+paginationSpeed :2000,
+lazyLoad : true,
+stopOnHover : true,
+autoPlay : true,
+pagination:false,
+navigation:true,
+itemsDesktop : [1170,1], //5 items between 1000px and901px 
+itemsDesktopSmall : [900,1], // betweem 900px and 601px 
+itemsTablet: [600,1], //2 items between 600 and 0 
+itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option       
+});
+});	
+</script>
+@endforeach
 </div>
 </div>
 </div>

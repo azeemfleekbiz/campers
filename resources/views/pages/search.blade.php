@@ -130,11 +130,22 @@
 <h3>Search Results</h3>
 <div class="bg-red search-line-3"></div>
 <p>4 affordable Motorhomes from 1 rental company in Windhoek </p>
+
+@if(isset($vehicles))
+@foreach($vehicles as $vehicle)
 <div class="row margin-bottom">
 <div class="col-md-6 search-result-car padding-right">
-<img src="assets/images/na.jpg" class="img-responsive">
+<?php	
+$imgs = explode(",",$vehicle->v_images);
+for($i=0;$i<count($imgs);$i++):
+if($i==1){
+	break;
+}
+?>
+<img src="public/uploads/vehicles/<?php echo $imgs[$i]; ?>" class="img-responsive">
+<?php endfor; ?>	
 <div class="bg-red">
-<h4>4x4 SINGLE CAB Manual 2 BERTH</h4>
+<h4>{{$vehicle->v_name}}</h4>
 </div>
 </div>
 <div class="col-md-6 search-result-car bg-black">
@@ -142,130 +153,32 @@
 <table class="table select-box-four">
 <tr>
 <th>Suitable for</th>
-<td>2 Persons</td>
+<td>{{$vehicle->v_person}}</td>
 </tr>
 <tr>
 <th>Vehicle age</th>
-<td>2011</td>
+<td>{{$vehicle->v_age}}</td>
 </tr>
 <tr>
 <th>Vehicle type</th>
-<td>Manual</td>
+<td>{{$vehicle->v_type}}</td>
 </tr>
 <tr>
 <th class="select-price">Price</th>
-<td class="currency">0 <i class="fa fa-eur" aria-hidden="true"></i></td>
+<td class="currency">{{$vehicle->v_toll_fee + $vehicle->v_dep_fee}} <i class="fa fa-eur" aria-hidden="true"></i></td>
 <td><i class="info-button fa fa-info-circle select-vehicle" aria-hidden="true"></i></td>
 </tr>
 </table>
 </div>
 <div class="col-md-12 search-button text-center">
-<a class="btn btn-lg" href="javascript:void(0);">Select Vehicle</a>
+<a class="btn btn-lg" href="{{url('/faredetails')}}/{{$vehicle->id}}">Select Vehicle</a>
 </div>
 </div>
 </div>
-<div class="row margin-bottom">
-<div class="col-md-6 search-result-car padding-right">
-<img src="assets/images/car-1.jpg" class="img-responsive">
-<div class="bg-red">
-<h4>4x4 SINGLE CAB Manual 2 BERTH</h4>
-</div>
-</div>
-<div class="col-md-6 search-result-car bg-black">
-<div class="col-md-12">
-<table class="table select-box-four">
-<tr>
-<th>Suitable for</th>
-<td>2 Persons</td>
-</tr>
-<tr>
-<th>Vehicle age</th>
-<td>2011</td>
-</tr>
-<tr>
-<th>Vehicle type</th>
-<td>Manual</td>
-</tr>
-<tr>
-<th class="select-price">Price</th>
-<td class="currency">0 <i class="fa fa-eur" aria-hidden="true"></i></td>
-<td><i class="info-button fa fa-info-circle select-vehicle" aria-hidden="true"></i></td>
-</tr>
-</table>
-</div>
-<div class="col-md-12 search-button text-center">
-<a class="btn btn-lg" href="javascript:void(0);">Select Vehicle</a>
-</div>
-</div>
-</div>
-<div class="row margin-bottom">
-<div class="col-md-6 search-result-car padding-right">
-<img src="assets/images/car-2.jpg" class="img-responsive">
-<div class="bg-red">
-<h4>4x4 SINGLE CAB Manual 2 BERTH</h4>
-</div>
-</div>
-<div class="col-md-6 search-result-car bg-black">
-<div class="col-md-12">
-<table class="table select-box-four">
-<tr>
-<th>Suitable for</th>
-<td>2 Persons</td>
-</tr>
-<tr>
-<th>Vehicle age</th>
-<td>2011</td>
-</tr>
-<tr>
-<th>Vehicle type</th>
-<td>Manual</td>
-</tr>
-<tr>
-<th class="select-price">Price</th>
-<td class="currency">0 <i class="fa fa-eur" aria-hidden="true"></i></td>
-<td><i class="info-button fa fa-info-circle select-vehicle" aria-hidden="true"></i></td>
-</tr>
-</table>
-</div>
-<div class="col-md-12 search-button text-center">
-<a class="btn btn-lg" href="javascript:void(0);">Select Vehicle</a>
-</div>
-</div>
-</div>
-<div class="row margin-bottom">
-<div class="col-md-6 search-result-car padding-right">
-<img src="assets/images/car-3.jpg" class="img-responsive">
-<div class="bg-red">
-<h4>4x4 SINGLE CAB Manual 2 BERTH</h4>
-</div>
-</div>
-<div class="col-md-6 search-result-car bg-black">
-<div class="col-md-12">
-<table class="table select-box-four">
-<tr>
-<th>Suitable for</th>
-<td>2 Persons</td>
-</tr>
-<tr>
-<th>Vehicle age</th>
-<td>2011</td>
-</tr>
-<tr>
-<th>Vehicle type</th>
-<td>Manual</td>
-</tr>
-<tr>
-<th class="select-price">Price</th>
-<td class="currency">0 <i class="fa fa-eur" aria-hidden="true"></i></td>
-<td><i class="info-button fa fa-info-circle select-vehicle" aria-hidden="true"></i></td>
-</tr>
-</table>
-</div>
-<div class="col-md-12 search-button text-center">
-<a class="btn btn-lg" href="javascript:void(0);">Select Vehicle</a>
-</div>
-</div>
-</div>
+@endforeach
+@else
+<div>Sorry there no found search result</div>
+@endif
 </div>
 </div>
 </div>
