@@ -51,6 +51,25 @@
                         <input type="text" name="season_name" class="form-control" id="season_name" placeholder="Enter Season Name" required="required">
                     </div>
                 </div>
+                
+                
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Season Rates</label>
+
+                    <div class="col-sm-10">
+                        <span>
+                            <input style="width: 300px;float: left;" type="number" name="amount" class="form-control" id="season_name" placeholder="Enter Season Rate" required="required" min="1">
+                        @foreach( $currencies as $currency )
+                             <select required="" name="currency_id" class="form-control" style="width: 143px">
+                               <option value=""> Select Currency </option>
+                               <option value="{{$currency->id}}"> {{$currency->currency_code}} </option>                               
+                             </select>
+                           @endforeach
+                           </span>
+                    </div>
+                </div>
+                
+                
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Start Date:</label>
@@ -101,8 +120,9 @@
 @extends('admin.layouts.footerinner')
 
 
-
-
+<link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet"
+        type="text/css" />
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script type="text/javascript">
     $('#city_id').change(function(){
     var city_id = $(this).val();    
@@ -137,24 +157,36 @@
 
 
 
-<script>
+<script>   
+    
     $(function () {
+        var dateToday = new Date();
+       
         //Date picker
         $('#datepicker').datepicker({
-            autoclose: true
+            dateFormat: "mm/d/yy",
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            minDate: 0 // set the minDate to the today's date
         })
         //Date picker
         $('#datepicker1').datepicker({
-            autoclose: true
+            dateFormat: "mm/d/yy",
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            minDate: 0 // set the minDate to the today's date
         })
 
+        
 
         $('#example1').DataTable()
         $('#example2').DataTable({
             'paging': true,
             'lengthChange': false,
             'searching': false,
-            'ordering': true,
+            'ordering': false,
             'info': true,
             'autoWidth': false
         })

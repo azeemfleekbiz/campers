@@ -8,10 +8,15 @@ class AdditionalServices extends Model
 {
     protected $table = 'camp_additional_services';
     protected $primaryKey = 'id';
-    protected $fillable   = ['name','amount'];   
+    protected $fillable   = ['currency_id','name','amount'];   
+    protected $currency_id;
     protected $name;
     protected $amount;
     protected $created_at;
     protected $updated_at;
     public $timestamps = false; // for false updated_at and created_at
+    
+    public function currency() {
+        return $this->belongsTo('App\Currencies','currency_id');
+    }
 }

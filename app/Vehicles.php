@@ -8,7 +8,7 @@ class Vehicles extends Model
 {
     protected $table = 'camp_vechicle';
     protected $primaryKey = 'id';
-    protected $fillable   = ['company_id','city_id','season_id','season_rate_id','v_name','v_person','v_age','v_type','v_engine','v_toll_fee','v_dep_fee','currency_id','category_id','equipments','service_id','inclusion_id'];   
+    protected $fillable   = ['company_id','city_id','season_id','season_rate_id','v_name','v_person','v_age','v_type','v_engine','v_toll_fee','v_dep_fee','currency_id','category_id','equipments','service_id','inclusion_id','v_images'];   
     protected $company_id;
     protected $city_id;
     protected $season_id;
@@ -55,5 +55,16 @@ class Vehicles extends Model
     public function seasonrate() 
     {
       return $this->belongsTo('App\SeasonRates');
+    }
+    
+    
+    //------------------------------one to many relationship with Cites---------------------
+    public function order() {
+        return $this->hasMany('\App\BookingOrders','id');
+   }
+   
+   //------------------------------one to one relationship with Cites---------------------
+   public function currency() {
+        return $this->belongsTo('App\Currencies','currency_id');
     }
 }

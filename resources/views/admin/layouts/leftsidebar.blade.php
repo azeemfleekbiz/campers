@@ -14,7 +14,11 @@
           </a>          
         </li>   
       
-              
+              <li>
+          <a href="{{ url('/admin/booking-orders') }}">
+            <i class="fa fa-first-order" aria-hidden="true"></i> <span>Orders</span>                    
+          </a>
+        </li>
         
        <li class="treeview">
           <a href="">

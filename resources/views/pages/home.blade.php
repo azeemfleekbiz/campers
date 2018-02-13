@@ -101,80 +101,32 @@ Für diejenigen, die sich gerne im eigenen 4x4 Camper einer geführten Gruppe an
 </div>
 </div>
 <div class="resp-slider row">
+    @foreach($vehicles as $vehicle)
 <div class="col-md-4 col-xs-12">
-<img src="{{ asset('assets/images/car-1.jpg') }}" class="img-responsive">
+<img src="{{asset('/public/uploads/vehicles/vehicle-1.jpg')}}" class="img-responsive">
 <div class="bg-red">
-<h5>Asco Bushcamper</h5>
+<h5>{{$vehicle->v_name}}</h5>
 </div>
 <div class="col-md-5 col-xs-6 bg-black">
 <div class="vehicle-text">
 <p>Suitable for</p>
 <p>Vehicle age</p>
-<p>Vehicle type</p>
+<p>{{$vehicle->v_type}}</p>
 </div>
 </div>
 <div class="col-md-7 col-xs-6 bg-black">
 <div class="vehicle-description">
-<p>2 person</p>
-<p>2012 Models</p>
-<p>Manual - 3.0L Turbo Diesel</p>
+<p>{{$vehicle->v_person}}</p>
+<p>{{$vehicle->v_age}}</p>
+<p>{{$vehicle->v_type}}</p>
 </div>
 </div>
 <div class="bg-black vehicle-button">
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vehicle Description</button>
 </div>
 </div>
-<div class="col-md-4 col-xs-12 margin-top-bottom-mobile">
-<img src="{{ asset('assets/images/car-2.jpg') }}" class="img-responsive">
-<div class="bg-red">
-<h5>Asco Bushcamper</h5>
-</div>
-<div class="col-md-5 col-xs-6 bg-black">
-<div class="vehicle-text">
-<p>Suitable for</p>
-<p>Vehicle age</p>
-<p>Vehicle type</p>
-</div>
-</div>
-<div class="col-md-7 col-xs-6 bg-black">
-<div class="vehicle-description">
-<p>2 person</p>
-<p>2012 Models</p>
-<p>Manual - 3.0L Turbo Diesel</p>
-</div>
-</div>
-<div class="bg-black vehicle-button">
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal-1">Vehicle Description</button>
-</div>
-</div>
-<div class="col-md-4 col-xs-12">
-<img src="{{ asset('assets/images/car-3.jpg') }}" class="img-responsive">
-<div class="bg-red">
-<h5>Asco Bushcamper</h5>
-</div>
-<div class="col-md-5 col-xs-6 bg-black">
-<div class="vehicle-text">
-<p>Suitable for</p>
-<p>Vehicle age</p>
-<p>Vehicle type</p>
-</div>
-</div>
-<div class="col-md-7 col-xs-6 bg-black">
-<div class="vehicle-description">
-<p>2 person</p>
-<p>2012 Models</p>
-<p>Manual - 3.0L Turbo Diesel</p>
-</div>
-</div>
-<div class="bg-black vehicle-button">
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal-2">Vehicle Description</button>
-</div>
-</div>            
-</div>
-</div>
-</div>
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+    @endforeach
+     <div id="myModal" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -182,7 +134,7 @@ Für diejenigen, die sich gerne im eigenen 4x4 Camper einer geführten Gruppe an
 <h4 class="modal-title">Modal Header</h4>
 </div>
 <div class="modal-body">
-<p>This is Test 1</p>
+<p></p>
 
 <div id="popup-slider">
 	<div class="item">
@@ -203,4 +155,9 @@ Für diejenigen, die sich gerne im eigenen 4x4 Camper einer geführten Gruppe an
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+<!-- Modal -->
+
 @include('include.footer')

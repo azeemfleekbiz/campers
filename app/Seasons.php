@@ -8,10 +8,12 @@ class Seasons extends Model
 {
     protected $table = 'camp_season';
     protected $primaryKey = 'id';
-    protected $fillable   = ['company_id','city_id','season_name','start_date','end_date'];   
+    protected $fillable   = ['company_id','city_id','season_name','amount','currency_id','start_date','end_date'];   
     protected $company_id;
     protected $city_id;
     protected $season_name;
+    protected $amount;
+    protected $currency_id;
     protected $start_date;
     protected $end_date;
     protected $created_at;
@@ -20,16 +22,19 @@ class Seasons extends Model
     
     
     //----------------relationship with Company--------------------------
-    public function companyseason() 
+    public function company() 
     {
       return $this->belongsTo('App\Companies');
     } 
     
     //----------------relationship with Cities--------------------------
-    public function citycompany() 
+    public function city() 
     {
       return $this->belongsTo('App\Cities');
     } 
     
+    public function currency() {
+        return $this->belongsTo('App\Currencies','currency_id');
+    }
     
 }

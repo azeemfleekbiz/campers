@@ -66,15 +66,7 @@
                                         <input type="text" name="inclusion_name" value="{{$inclusion->name}}" class="form-control" id="exampleInputEmail1" placeholder="Enter inclusion name" required="required">
                                     </div> 
 
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Description </label>
-                                        <br>
-                                        <div class="col-sm-10">
-                                            <textarea required="required" name="description" class="textarea" placeholder="Coupon Code Description"
-                                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$inclusion->descp}}</textarea>
-                                        </div>
-                                        <div style="height: 10px"></div>
-                                    </div>                                                                   
+                                                                                                     
 
 
                                 </div>
@@ -139,18 +131,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Inclusion Name</label>
                             <input type="text" name="inclusion_name" class="form-control" id="exampleInputEmail1" placeholder="Enter inclusion name" required="required">
-                        </div> 
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Description </label>
-                            <br>
-                            <div class="col-sm-10">
-                                <textarea required="required" name="description" class="textarea" placeholder="Inclusion Description"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                            </div>
-                            <div style="height: 10px"></div>
                         </div>
-
                     </div>
                     <!-- /.box-body -->
                     <div class="modal-footer">

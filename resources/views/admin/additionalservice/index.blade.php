@@ -37,7 +37,7 @@
                 @foreach( $services as $service )
                 <tr>                              
                     <td>{{$service->name}}</td>
-                    <td>{{$service->amount}}</td>
+                    <td>{{$service->amount}} {{$service->currency->currency_symbol}}</td>
                     <td><a href="#editcoupons{{$service->id}}" rel="" type="button" 
                            class="btn btn-info make-modal-large iframe-form-open" 
                            data-toggle="modal"  title="Edit Server {{$service->name}}">
@@ -69,9 +69,20 @@
                         </div> 
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Amount</label>
-                            <input type="text" name="amount" value="{{$service->amount}}"  class="form-control" id="exampleInputEmail1" placeholder="Enter additional service amount" required="required">
-                        </div> 
+                            <span>   <label for="exampleInputEmail1" >Amount</label></span><br/>
+                            <span>  <input style="width:338px;float:left;" type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter additional service amount" required="required" min="1" value="{{$service->amount}}">
+                           @foreach( $currencies as $currency )
+                             <select required="" name="currency_id" class="form-control" style="width: 200px">
+                               <option value=""> Select Currency </option>
+                               <option value="{{$currency->id}}" @if ($currency->id == $service->currency_id) selected="selected"  @endif> {{$currency->currency_code}} </option>                               
+                             </select>
+                           @endforeach
+                        </span>
+                        </div>               
+                                    
+                                    
+                                    
+                        
                         
                                                                                            
 
@@ -141,9 +152,19 @@
                         </div> 
                         
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Service Amount</label>
-                            <input type="text" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter additional service amount" required="required">
+                            <span>   <label for="exampleInputEmail1" >Service Amount</label></span><br/>
+                            <span>  <input style="width:338px;float:left;" type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter additional service amount" required="required" min="1">
+                           @foreach( $currencies as $currency )
+                             <select required="" name="currency_id" class="form-control" style="width: 200px">
+                               <option value=""> Select Currency </option>
+                               <option value="{{$currency->id}}"> {{$currency->currency_code}} </option>                               
+                             </select>
+                           @endforeach
+                        </span>
                         </div> 
+                        
+                        
+                        
                         
                     </div>
                     <!-- /.box-body -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Redirect;
 use App\Cities;
+use App\Vehicles;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -15,7 +16,8 @@ class PagesController extends Controller
     {
       $home = 'home';
       $cities = DB::table('camp_city')->get();
-      return view('pages.'.$home)->with('cities',$cities);
+      $vehicles = Vehicles::OrderBy('id','desc')->get();    
+      return view('pages.'.$home)->with('cities',$cities)->with('vehicles',$vehicles);
     }
 
     public function satellitephone(){

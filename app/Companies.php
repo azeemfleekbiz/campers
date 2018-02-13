@@ -16,7 +16,7 @@ class Companies extends Model
     
     
     //------------------------------one to many relationship with Seasons---------------------
-    public function comapyseason() {
+    public function season() {
         return $this->hasMany('\App\Seasons','id');
    }
    

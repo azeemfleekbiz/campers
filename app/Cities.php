@@ -15,7 +15,7 @@ class Cities extends Model
     public $timestamps = false; // for false updated_at and created_at
     
     //------------------------------one to many relationship with Seasons---------------------
-    public function citiesseason() {
+    public function season() {
         return $this->hasMany('\App\Seasons','id');
    }
    

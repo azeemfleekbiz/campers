@@ -29,8 +29,7 @@ class InclusionsController extends Controller
           if($inclusions==NULL  OR $inclusions->name!=$request->get('inclusion_name'))
           {    
             $inclusions = new Inclusions();
-            $inclusions->name  = $request->input('inclusion_name');
-            $inclusions->descp  = $request->input('description');
+            $inclusions->name  = $request->input('inclusion_name');            
             $inclusions->created_at      = date("Y-m-d H:i:s");
             $inclusions->updated_at     = date("Y-m-d H:i:s");
             $inclusions->save();
@@ -48,8 +47,7 @@ class InclusionsController extends Controller
        $inclusions = Inclusions::find($request->input('inclusion_id'));
         if($inclusions)
         {            
-            $inclusions->name  = $request->input('inclusion_name');    
-            $inclusions->descp  = $request->input('description');
+            $inclusions->name  = $request->input('inclusion_name');                
             $inclusions->updated_at     = date("Y-m-d H:i:s");
             $inclusions->save();
            return Redirect::back()->withMessage('Inclusion Successfuly Updated.');

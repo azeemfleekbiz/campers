@@ -4,6 +4,7 @@ use DB;
 use Redirect;
 use Auth;
 use App\User;
+use App\Currencies;
 use App\AdditionalServices;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,8 +19,9 @@ class AdditionalServicesController extends Controller
     //--------------------list of all the Additional Services-------------------- 
    public function index()
    {
-       $services = AdditionalServices::OrderBy('id', 'desc')->get();           
-       return view('admin.additionalservice.index',array('page_title'=>"Admin Dashboard Services",'services'=>$services));
+       $services = AdditionalServices::OrderBy('id', 'desc')->get();
+       $currencies = Currencies::OrderBy('id','desc')->get();
+       return view('admin.additionalservice.index',array('page_title'=>"Admin Dashboard Services",'services'=>$services,'currencies'=>$currencies));
    }
    
    //---------------------add new Additional Services ----------------------------
@@ -30,6 +32,7 @@ class AdditionalServicesController extends Controller
           if($service==NULL  OR $service->name!=$request->get('service_name'))
           {    
             $service = new AdditionalServices();
+            $service->currency_id  = $request->input('currency_id');
             $service->name  = $request->input('service_name');        
             $service->amount  = $request->input('amount');        
             $service->created_at      = date("Y-m-d H:i:s");
@@ -49,6 +52,7 @@ class AdditionalServicesController extends Controller
        $service = AdditionalServices::find($request->input('service_id'));
         if($service)
         {            
+            $service->currency_id  = $request->input('currency_id');
             $service->name  = $request->input('service_name');        
             $service->amount  = $request->input('amount');          
             $service->updated_at     = date("Y-m-d H:i:s");

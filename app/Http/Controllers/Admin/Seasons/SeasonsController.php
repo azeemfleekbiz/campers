@@ -6,6 +6,7 @@ use Auth;
 use App\Companies;
 use App\Cities;
 use App\Seasons;
+use App\Currencies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
@@ -20,12 +21,7 @@ class SeasonsController extends Controller
     //--------------------list of all the Seasons-------------------- 
    public function index()
    {
-       $seasons = DB::table('camp_season')
-            ->join('camp_city', 'camp_city.id', '=', 'camp_season.city_id')
-            ->join('camp_company', 'camp_company.id', '=', 'camp_season.company_id')
-            ->select('camp_season.id','camp_season.season_name','camp_season.start_date','camp_season.end_date','camp_season.company_id', 'camp_city.city_name', 'camp_company.company_name')
-            ->get();   
-       
+       $seasons = Seasons::OrderBy('id','desc')->get();          
        return view('admin.seasons.index',array('page_title'=>"Admin Dashboard Seasons",'seasons'=>$seasons));
    }
    
@@ -34,7 +30,8 @@ class SeasonsController extends Controller
    {
        $cities    = Cities::OrderBy('id','desc')->get();
        $companies = Companies::OrderBy('id','desc')->get();
-       return view('admin.seasons.create',array('page_title'=>"Admin Dashboard Create Season",'cities'=>$cities,'companies'=>$companies));
+       $currencies = Currencies::OrderBy('id','desc')->get();
+       return view('admin.seasons.create',array('page_title'=>"Admin Dashboard Create Season",'cities'=>$cities,'companies'=>$companies,'currencies'=>$currencies));
        
    }
    
@@ -45,6 +42,8 @@ class SeasonsController extends Controller
        $season->city_id         = $request->input('city_id');
        $season->company_id      = $request->input('company_id');
        $season->season_name	= $request->input('season_name');
+       $season->amount	= $request->input('amount');
+       $season->currency_id	= $request->input('currency_id');
        $season->start_date      = date("Y-m-d H:i:s", strtotime($request->input('start_date')));
        $season->end_date        = date("Y-m-d H:i:s", strtotime($request->input('end_date')));
        $season->created_at      = date("Y-m-d H:i:s");
@@ -59,7 +58,8 @@ class SeasonsController extends Controller
        $season    = Seasons::find($season_id);
        $cities    = Cities::OrderBy('id','desc')->get();
        $companies = Companies::OrderBy('id','desc')->get();
-       return view('admin.seasons.edit',array('page_title'=>"Admin Dashboard Edit Season",'cities'=>$cities,'companies'=>$companies,'season'=>$season));
+       $currencies = Currencies::OrderBy('id','desc')->get();
+       return view('admin.seasons.edit',array('page_title'=>"Admin Dashboard Edit Season",'cities'=>$cities,'companies'=>$companies,'season'=>$season,'currencies'=>$currencies));
        
    }
    //--------------------------update season------------------------------
@@ -71,6 +71,8 @@ class SeasonsController extends Controller
            $season->city_id         = $request->input('city_id');
            $season->company_id      = $request->input('company_id');
            $season->season_name     = $request->input('season_name');
+           $season->amount	= $request->input('amount');
+           $season->currency_id	= $request->input('currency_id');
            $season->start_date      = date("Y-m-d H:i:s", strtotime($request->input('start_date')));
            $season->end_date        = date("Y-m-d H:i:s", strtotime($request->input('end_date')));           
            $season->updated_at      = date("Y-m-d H:i:s");

@@ -5,6 +5,7 @@ use DB;
 use Redirect;
 use Auth;
 use App\User;
+use App\Currencies;
 use App\Equipments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,8 +20,9 @@ class EquipmentsController extends Controller
    //--------------------list of all the Equipment-------------------- 
    public function index()
    {
-       $equipment = Equipments::OrderBy('id', 'desc')->get();           
-       return view('admin.equipments.index',array('page_title'=>"Admin Dashboard Equipments",'equipments'=>$equipment));
+       $equipment  = Equipments::OrderBy('id', 'desc')->get();  
+       $currencies = Currencies::OrderBy('id','desc')->get();
+       return view('admin.equipments.index',array('page_title'=>"Admin Dashboard Equipments",'equipments'=>$equipment,'currencies'=>$currencies));
    }
    
    //---------------------add new Equipment----------------------------
@@ -31,6 +33,7 @@ class EquipmentsController extends Controller
           if($equipment==NULL  OR $equipment->name !=$request->get('equipment_name'))
           {    
             $equipment = new Equipments();
+            $equipment->currency_id  = $request->input('currency_id');
             $equipment->name  = $request->input('equipment_name');  
             $equipment->amount  = $request->input('amount');  
             $equipment->created_at      = date("Y-m-d H:i:s");
@@ -49,7 +52,8 @@ class EquipmentsController extends Controller
    {
        $equipment = Equipments::find($request->input('equipment_id'));
         if($equipment)
-        {            
+        {   
+            $equipment->currency_id  = $request->input('currency_id');
             $equipment->name  = $request->input('equipment_name');  
             $equipment->amount  = $request->input('amount');       
             $equipment->updated_at     = date("Y-m-d H:i:s");

@@ -14,6 +14,7 @@ use App\Inclusions;
 use App\Equipments;
 use App\AdditionalServices;
 use App\SeasonsPrices;
+use App\VehicleEquipmentPrices;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
@@ -51,9 +52,8 @@ class VehiclesController extends Controller
     }
     //------------------------save vehicle in database-------------------
     public function create(Request $request)
-    {
-        $vehicle = new Vehicles();
-        
+    {   
+        $vehicle = new Vehicles();        
             $uploadfiles_name = $request->input("uploadfiles_name");
             $remove_file_arr = explode(",",$uploadfiles_name);
             if ( Input::hasFile('sample_logos') ):
