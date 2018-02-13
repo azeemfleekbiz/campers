@@ -75,10 +75,10 @@
                                                   
                         <div class="form-group">
                             <label for="exampleInputEmail1">Select Company</label>
-                            <select class="form-control" name="company_id" id="order_type_id" required="required">
+                            <select multiple class="form-control" name="company_id[]" id="company_id" required="required">
                                 <option value="">Select Company</option> 
                                 @foreach( $companies as $company )
-                                <option value="{{$company->id}}" @if ($company->id ==$citycompany->company_id ) selected="selected"  @endif>{{$company->company_name}}</option>                   
+                                <option value="{{$company->id}}" @if ($company->id ==$citycompany->company_id ) selected="selected"   @endif>{{$company->company_name}}</option>                   
                                 @endforeach
                             </select>          
                            </div>
@@ -153,7 +153,7 @@
                                                   
                         <div class="form-group">
                             <label for="exampleInputEmail1">Select Company</label>
-                            <select class="form-control" name="company_id" id="order_type_id" required="required">
+                            <select multiple class="form-control" name="company_id[]" id="company_id" required="required">
                                 <option value="">Select Company</option> 
                                 @foreach( $companies as $company )
                                 <option value="{{$company->id}}">{{$company->company_name}}</option>                   

@@ -31,13 +31,20 @@ class CitiesCompaniesController extends Controller
    
    //----------------------create City companies---------------------
    public function create(Request $request)
-   {
-       $citycompany = new CompanyCities();
-       $citycompany->city_id  = $request->input('city_id');
-       $citycompany->company_id  = $request->input('company_id');
-       $citycompany->created_at      = date("Y-m-d H:i:s");
-       $citycompany->updated_at     = date("Y-m-d H:i:s");
-       $citycompany->save();
+   {   
+       foreach ($request->input('company_id') as $names)
+       {                  
+          $company=array(
+            'city_id'            => $request->input('city_id') ,
+            'company_id'         => $names,
+            'created_at'         => date("Y-m-d H:i:s"),
+            'updated_at'         => date("Y-m-d H:i:s"),             
+        );
+           $citycompany = new CompanyCities($company); 
+           $citycompany->save();       
+       } 
+        
+        
        return Redirect::back()->withMessage('Citiy Company Successfuly Added.'); 
    }
    
@@ -47,10 +54,14 @@ class CitiesCompaniesController extends Controller
        $citycompany = CompanyCities::find($request->input('city_company_id')); 
        if($citycompany)
        {
-           $citycompany->city_id  = $request->input('city_id');
-           $citycompany->company_id  = $request->input('company_id');           
-           $citycompany->updated_at     = date("Y-m-d H:i:s");
+         foreach ($request->input('company_id') as $names)
+         { 
+           $citycompany->city_id  = $request->input('city_id');  
+           $citycompany->company_id  = $names;                            
+           $citycompany->updated_at     = date("Y-m-d H:i:s");         
            $citycompany->save();
+         }
+           
             return Redirect::back()->withMessage('Citiy Company Successfuly update.');
        } else {
            return Redirect::back()->withMessage('Citiy Company does not exits.'); 

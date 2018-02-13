@@ -14,11 +14,7 @@
           </a>          
         </li>   
       
-              <li>
-          <a href="{{ url('/admin/booking-orders') }}">
-            <i class="fa fa-first-order" aria-hidden="true"></i> <span>Orders</span>                    
-          </a>
-        </li>
+              
         
        <li class="treeview">
           <a href="">
@@ -39,31 +35,33 @@
           </ul>
         </li>
         
-        <li class="treeview">
-          <a href="">
-            <i class="fa fa-first-order" aria-hidden="true"></i> <span>Campers Seasons</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>     
-            <ul class="treeview-menu">             
-            <li class="active"><a href="{{ url('/admin/seasons') }}"><i class="fa fa-circle-o"></i>Seasons</a></li>
-            <li class="active"><a href="{{ url('/admin/seasons-rates') }}"><i class="fa fa-circle-o"></i>Seasons Rates</a></li>            
-          </ul>
-        </li>  
         
-        <li class="treeview">
-          <a href="">
-            <i class="fa fa-first-order" aria-hidden="true"></i> <span>Campers Vehicles</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>     
-            <ul class="treeview-menu">             
-            <li class="active"><a href="{{ url('/admin/vehicles') }}"><i class="fa fa-circle-o"></i>Vehicles</a></li>
-            
-          </ul>
+        <li>
+          <a href="{{ url('/admin/seasons') }}">
+            <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Seasons</span>                    
+          </a>
         </li>
+        
+        
+        <li>
+          <a href="{{ url('/admin/vehicles') }}">
+            <i class="fa fa-car" aria-hidden="true"></i> <span>Vehicles</span>                    
+          </a>
+        </li>
+        
+        
+        <li>
+          <a href="{{ url('/admin/booking-orders') }}">
+            <i class="fa fa-first-order" aria-hidden="true"></i> <span>Orders</span>                    
+          </a>
+        </li>
+        
+        <li>
+          <a href="{{ url('/admin/camper-pages') }}">
+            <i class="fa fa-pagelines" aria-hidden="true"></i> <span>CMS Pages</span>                    
+          </a>
+        </li>
+        
         
         
         

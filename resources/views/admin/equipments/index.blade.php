@@ -70,13 +70,16 @@
                         
                          <div class="form-group">
                             <span>   <label for="exampleInputEmail1" >Equiment Amount</label></span><br/>
-                            <span>  <input style="width:338px;float:left;" type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter equipment amount" required="required" min="1" value="{{$equipment->amount}}">
+                            <span>  <input style="width:338px;float:left;" type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter equipment amount" required="required" min="0" value="{{$equipment->amount}}">
+                           <select required="" name="currency_id" class="form-control" style="width: 200px">
+                          <option value=""> Select Currency </option>
                            @foreach( $currencies as $currency )
-                             <select required="" name="currency_id" class="form-control" style="width: 200px">
-                               <option value=""> Select Currency </option>
+                             
+                               
                                <option value="{{$currency->id}}" @if ($currency->id == $equipment->currency_id) selected="selected"  @endif> {{$currency->currency_code}} </option>                               
-                             </select>
+                            
                            @endforeach
+                            </select>
                         </span>
                         </div>            
                                     
@@ -152,13 +155,14 @@
                         
                         <div class="form-group">
                             <span>   <label for="exampleInputEmail1" >Equiment Amount</label></span><br/>
-                            <span>  <input style="width:338px;float:left;" type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter equipment amount" required="required" min="1">
+                            <span>  <input style="width:338px;float:left;" type="number" name="amount" class="form-control" id="exampleInputEmail1" placeholder="Enter equipment amount" required="required" min="0">
+                           <select required="" name="currency_id" class="form-control" style="width: 200px">
+                         <option value=""> Select Currency </option>
                            @foreach( $currencies as $currency )
-                             <select required="" name="currency_id" class="form-control" style="width: 200px">
-                               <option value=""> Select Currency </option>
                                <option value="{{$currency->id}}"> {{$currency->currency_code}} </option>                               
-                             </select>
+                             
                            @endforeach
+                           </select>
                         </span>
                         </div> 
                         

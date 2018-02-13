@@ -48,25 +48,22 @@
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
-                                    <label>Select Comapny</label>
-                                    <select name="company_id" id="company_id" class="form-control" required="required">
-                                    </select> 
+                                    <label>Select Season</label>
+                                    <select disabled="disabled" name="season_id" id="season_id" class="form-control" required="required">
+                                    </select>
                                 </div>
+                                
                                 <!-- /.form-group -->
                             </div>
                             <!-- /.col -->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Select Season</label>
-                                    <select name="season_id" id="season_id" class="form-control" required="required">
-                                    </select>
-                                </div>
-                                <!-- /.form-group -->
-                                <div class="form-group">
-                                    <label>Select Season Rates</label>
-                                    <select name="season_rate_id" id="season_rate_id" class="form-control" required="required">
+                                    <label>Select Comapny</label>
+                                    <select disabled="disabled" name="company_id" id="company_id" class="form-control" required="required">
                                     </select> 
                                 </div>
+                                <!-- /.form-group -->
+                                
                                 <!-- /.form-group -->
                             </div>
                             <!-- /.col -->
@@ -143,19 +140,33 @@
                             <!-- form start -->
                             <div class="box-body">
                                 <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Currency</label>
+
+                                    <div class="col-sm-10">
+                                       <select required="" name="currency_id" class="form-control" style="width: 200px">                            
+                            <option value=""> Select Currency </option>
+                                @foreach( $currencies as $currency )
+                               <option value="{{$currency->id}}"> {{$currency->currency_code}} </option>                               
+                           @endforeach
+                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Toll fee</label>
 
                                     <div class="col-sm-10">
-                                        <input type="number" name="toll_fee" value="" class="form-control" placeholder="Toll Fee">
+                                        <input type="number" name="toll_fee" value="" class="form-control" placeholder="Toll Fee" min="1">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Deployment fee</label>
 
                                     <div class="col-sm-10">
-                                        <input type="number" name="deployment_fee" value="" class="form-control" placeholder="Deployment Fee">
+                                        <input type="number" name="deployment_fee" value="" class="form-control" placeholder="Deployment Fee" min="1">
                                     </div>
                                 </div>
+                                
+                                
 
                             </div>
                         </div>
@@ -200,10 +211,10 @@
                                     
 
                                     <div class="col-sm-10">
-                                        <input type="radio" name="is_featued" value="yes">Yes
+                                        <input type="radio" name="is_featued" value="1">Yes
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="radio" name="is_featued" value="no" checked="checked">No
+                                        <input type="radio" name="is_featued" value="0" checked="checked">No
                                     </div>
                                 </div>
                                 
@@ -211,30 +222,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <!-- general form elements -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Currency</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <!-- form start -->
-                            <div class="box-body">
-                                <div class="form-group">                  
-
-                                    <div class="col-sm-10">
-                                        <select required="" name="currency" class="form-control">
-                                            <option value=""> Select Currency </option>
-                                            <option value="1"> ZAR </option>
-                                            <option value="2"> Euro</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-6">
                         <!-- general form elements -->
                         <div class="box box-primary">
@@ -254,7 +242,7 @@
 					    <input name="equipment[]" class="myCheckboxes" value="{{$equiment->id}}" type="checkbox">
 					</span>
 					<span class="input-group-addon bg-green-gradient">{{$equiment->name}} </span>
-					    <input type="number" name="equipment_fees[]" class="form-control" value="{{$equiment->amount}}" placeholder="Enter Price">
+                                        <input disabled="disabled" type="number" name="equipment_fees[]" class="form-control" value="{{$equiment->amount}}" placeholder="Enter Price" min="1">
 					</div>                                    
                                        @endforeach
                                 </div>
@@ -298,7 +286,7 @@
 					    <input name="service[]" class="myCheckboxes" value="{{$service->id}}" type="checkbox">
 					</span>
 					<span class="input-group-addon bg-green-gradient">{{$service->name}} </span>
-					    <input type="number" name="service_fees[]" class="form-control" value="{{$service->amount}}" placeholder="Enter Price">
+                                        <input disabled="disabled" type="number" name="service_fees[]" class="form-control" value="{{$service->amount}}" placeholder="Enter Price" min="1">
 					</div> 
                                     
                                        @endforeach
@@ -458,7 +446,7 @@
                         $("#company_id").empty();
                         $("#company_id").append('<option>Select Company</option>');
                         $.each(res, function (key, value) {
-                            $("#company_id").append('<option value="' + value['id'] + '">' + value["company_name"] + '</option>');
+                            $("#company_id").append('<option value="' + value['id'] + '">' + value["company_name"] + '</option>').attr("disabled", false);
                         });
 
                     } else {
@@ -486,7 +474,7 @@
                         $("#season_id").empty();
                         $("#season_id").append('<option>Select Seasons</option>');
                         $.each(res, function (key, value) {
-                            $("#season_id").append('<option value="' + value['id'] + '">' + value["season_name"] + '</option>');
+                            $("#season_id").append('<option value="' + value['id'] + '">' + value["season_name"] + value["season_amount"]+ '</option>').attr("disabled", false);
                         });
 
                     } else {
@@ -514,7 +502,7 @@
                         $("#season_rate_id").empty();
                         $("#season_rate_id").append('<option>Select Seasons Rates</option>');
                         $.each(res, function (key, value) {
-                            $("#season_rate_id").append('<option value="' + value['id'] + '">' + value["season_name"] + " " + value["season_rate"] + '</option>');
+                            $("#season_rate_id").append('<option value="' + value['id'] + '">' + value["season_name"] + " " + value["season_rate"] + '</option>').attr("disabled", false);
                         });
 
                     } else {

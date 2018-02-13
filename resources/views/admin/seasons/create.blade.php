@@ -59,12 +59,12 @@
                     <div class="col-sm-10">
                         <span>
                             <input style="width: 300px;float: left;" type="number" name="amount" class="form-control" id="season_name" placeholder="Enter Season Rate" required="required" min="1">
-                        @foreach( $currencies as $currency )
-                             <select required="" name="currency_id" class="form-control" style="width: 143px">
+                            <select required="" name="currency_id" class="form-control" style="width: 143px">
                                <option value=""> Select Currency </option>
-                               <option value="{{$currency->id}}"> {{$currency->currency_code}} </option>                               
-                             </select>
+                        @foreach( $currencies as $currency )
+                               <option value="{{$currency->id}}"> {{$currency->currency_code}} </option>
                            @endforeach
+                            </select>
                            </span>
                     </div>
                 </div>

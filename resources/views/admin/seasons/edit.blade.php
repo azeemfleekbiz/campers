@@ -65,12 +65,13 @@
                     <div class="col-sm-10">
                         <span>
                             <input value="{{$season->amount}}" style="width: 300px;float: left;" type="number" name="amount" class="form-control" id="season_name" placeholder="Enter Season Rate" required="required" min="1">
-                        @foreach( $currencies as $currency )
-                             <select required="" name="currency_id" class="form-control" style="width: 143px">
+                        <select required="" name="currency_id" class="form-control" style="width: 143px">
                                <option value=""> Select Currency </option>
+                        @foreach( $currencies as $currency )
                                <option value="{{$currency->id}}" @if ($currency->id == $season->currency_id) selected="selected"  @endif> {{$currency->currency_code}} </option>                               
-                             </select>
+                             
                            @endforeach
+                           </select>
                            </span>
                     </div>
                 </div>

@@ -87,21 +87,20 @@ class VehiclesController extends Controller
            $vehicle->v_name             = $request->input('vehicle_title');
            $vehicle->company_id         = $request->input('company_id');
            $vehicle->city_id            = $request->input('city_id');
-           $vehicle->season_id          = $request->input('season_id');
-           $vehicle->season_rate_id     = $request->input('season_rate_id');
+           $vehicle->season_id          = $request->input('season_id');           
            $vehicle->v_person           = $request->input('suitable_for');
            $vehicle->v_age              = $request->input('vehicle_age');
            $vehicle->v_type             = $request->input('vehicle_type');
            $vehicle->v_engine           = $request->input('engine_size');
            $vehicle->v_toll_fee         = $request->input('toll_fee');
            $vehicle->v_dep_fee          = $request->input('deployment_fee');
-           $vehicle->currency_id        = $request->input('currency');
+           $vehicle->currency_id        = $request->input('currency_id');
            $vehicle->category_id        = implode(",",$request->input('category')) ;
            $vehicle->equipments         = implode(",",$request->input('equipment')) ;
            $vehicle->service_id         = implode(",",$request->input('service')) ;
            $vehicle->inclusion_id       = implode(",",$request->input('inclusion'));
            $vehicle->status             = 1;
-           $vehicle->is_featued         = $request->input('is_featued');         
+           $vehicle->is_featured         = $request->input('is_featued');         
            $vehicle->created_at         = date("Y-m-d H:i:s");
            $vehicle->updated_at         = date("Y-m-d H:i:s");
            $vehicle->v_images           = Input::hasFile('sample_logos') ? implode(",",$sample_images_arr) : '';
@@ -135,6 +134,7 @@ class VehiclesController extends Controller
     //---------------------save updated in database----------------------
     public function update(Request $request)
     {
+       
         $vehicle      = Vehicles::find($request->input('vehicle_id'));
         if($vehicle)
         {
@@ -171,16 +171,15 @@ class VehiclesController extends Controller
            $vehicle->v_name             = $request->input('vehicle_title');
            $vehicle->company_id         = $request->input('company_id');
            $vehicle->city_id            = $request->input('city_id');
-           $vehicle->season_id          = $request->input('season_id');
-           $vehicle->season_rate_id     = $request->input('season_rate_id');
+           $vehicle->season_id          = $request->input('season_id');           
            $vehicle->v_person           = $request->input('suitable_for');
            $vehicle->v_age              = $request->input('vehicle_age');
            $vehicle->v_type             = $request->input('vehicle_type');
            $vehicle->v_engine           = $request->input('engine_size');
            $vehicle->v_toll_fee         = $request->input('toll_fee');
            $vehicle->v_dep_fee          = $request->input('deployment_fee');
-           $vehicle->currency_id        = $request->input('currency');
-           $vehicle->is_featued         = $request->input('is_featued');
+           $vehicle->currency_id        = $request->input('currency_id');
+           $vehicle->is_featured         = $request->input('is_featued');
            $vehicle->category_id        = implode(",",$request->input('category')) ;
            $vehicle->equipments         = implode(",",$request->input('equipment')) ;
            $vehicle->service_id         = implode(",",$request->input('service')) ;

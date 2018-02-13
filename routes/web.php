@@ -138,7 +138,7 @@ Route::prefix('admin')->group(function(){
     
     Route::post('/seasons-rates/update',  'Admin\SeasonsPrices\SeasonsPriceController@update');
    
-    Route::get('/vehicles',  'Admin\Vehicles\VehiclesController@index');  //get Vehicle list
+    Route::get('/vehicles',  'Admin\Vehicles\VehiclesController@index');  //get Seasons list
     
     Route::get('/vehicles/add-vehicle',  'Admin\Vehicles\VehiclesController@createVehichle');  //Add New Vehicle
     
@@ -153,15 +153,6 @@ Route::prefix('admin')->group(function(){
     Route::post('/vehicles/update',  'Admin\Vehicles\VehiclesController@update');  //Add New Vehicle
     
     Route::get('/vehicles/destroy/{slug}', 'Admin\Vehicles\VehiclesController@destroy');//delete Seasons
-    
-    Route::get('/booking-orders',  'Admin\BookingOrders\BookingOrdersController@index');  //get Orders list
-    
-    Route::get('/booking-orders/view-order/{slug}',  'Admin\BookingOrders\BookingOrdersController@index');  //view Order detail
-    
-    Route::get('/booking-orders/view-order/{slug}',  'Admin\BookingOrders\BookingOrdersController@viewOrder');  //get Orders list
-    
-    Route::get('/booking-orders/destroy/{slug}',  'Admin\BookingOrders\BookingOrdersController@destroy');  //delete order list
-    
     
     Route::get('/change-password', 'Admin\AdminController@changePassword');
     

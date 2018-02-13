@@ -48,19 +48,6 @@
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
-                                    <label>Select Comapny</label>
-                                    <select class="form-control" name="company_id" id="company_id" required="required">
-                            <option value="">Select Company</option> 
-                            @foreach( $companies as $company )
-                            <option value="{{$company->id}}" @if ($company->id == $vehicle->company_id) selected="selected"  @endif>{{$company->company_name}}</option>                   
-                            @endforeach
-                        </select>
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label>Select Season</label>
                                     <select class="form-control" name="season_id" id="season_id" required="required">
                             <option value="">Select Season</option> 
@@ -71,17 +58,22 @@
                                     
                                 </div>
                                 <!-- /.form-group -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                                
                                 <div class="form-group">
-                                    <label>Select Season Rates</label>
-                                    
-                                    <select class="form-control" name="season_rate_id" id="season_rate_id" required="required">
-                            <option value="">Select Season Rates</option> 
-                            @foreach( $seasonrates as $seasonrate )
-                            <option value="{{$seasonrate->id}}" @if ($seasonrate->id == $vehicle->season_rate_id) selected="selected"  @endif>{{$seasonrate->season_name}}</option>                   
+                                    <label>Select Comapny</label>
+                                    <select class="form-control" name="company_id" id="company_id" required="required">
+                            <option value="">Select Company</option> 
+                            @foreach( $companies as $company )
+                            <option value="{{$company->id}}" @if ($company->id == $vehicle->company_id) selected="selected"  @endif>{{$company->company_name}}</option>                   
                             @endforeach
                         </select>
-                                    
                                 </div>
+                                
+                                <!-- /.form-group -->
+                                
                                 <!-- /.form-group -->
                             </div>
                             <!-- /.col -->
@@ -157,18 +149,31 @@
                             <!-- /.box-header -->
                             <!-- form start -->
                             <div class="box-body">
+                                
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Currency</label>
+
+                                    <div class="col-sm-10">
+                                       <select required="" name="currency_id" class="form-control" style="width: 200px">                            
+                            <option value=""> Select Currency </option>
+                                @foreach( $currencies as $currency )
+                               <option value="{{$currency->id}}" @if ($currency->id == $vehicle->currency_id) selected="selected"  @endif> {{$currency->currency_code}} </option>                               
+                           @endforeach
+                            </select>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="inputEmail3" class="col-sm-2 control-label">Toll fee</label>
 
                                     <div class="col-sm-10">
-                                        <input type="number" name="toll_fee" value="" class="form-control" placeholder="Toll Fee" value="{{$vehicle->v_toll_fee}}">
+                                        <input type="number" name="toll_fee"  class="form-control"   min="1" value="{{$vehicle->v_toll_fee}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3" class="col-sm-2 control-label">Deployment fee</label>
 
                                     <div class="col-sm-10">
-                                        <input type="number" name="deployment_fee" value="" class="form-control" placeholder="Deployment Fee" value="{{$vehicle->v_dep_fee}}">
+                                        <input type="number" name="deployment_fee"  class="form-control"   min="1" value="{{$vehicle->v_dep_fee}}">
                                     </div>
                                 </div>
 
@@ -219,10 +224,10 @@
                                     
 
                                     <div class="col-sm-10">
-                                        <input type="radio" name="is_featued" value="yes" @if ($vehicle->is_featued == 'yes') checked="checked"  @endif>Yes
+                                        <input type="radio" name="is_featued" value="1" @if ($vehicle->is_featued =1) checked="checked"  @endif>Yes
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="radio" name="is_featued" value="no" @if ($vehicle->is_featued == 'no') checked="checked"  @endif>No
+                                        <input type="radio" name="is_featued" value="0" @if ($vehicle->is_featued = 0) checked="checked"  @endif>No
                                     </div>
                                 </div>
                                 
@@ -231,33 +236,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-6">
-                        <!-- general form elements -->
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">Currency</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <!-- form start -->
-                            <div class="box-body">
-                                <div class="form-group">                  
-
-                                    <div class="col-sm-10">
-                                        
-                                        <select class="form-control" name="currency" id="currency" required="required">
-                            <option value="">Select Currency</option> 
-                            @foreach( $currencies as $currency )
-                            <option value="{{$currency->id}}" @if ($currency->id == $vehicle->currency_id) selected="selected"  @endif>{{$currency->currency_code}}</option>                   
-                            @endforeach
-                        </select>
-                                        
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
+                  
                     <div class="col-md-6">
                         <!-- general form elements -->
                         <div class="box box-primary">
@@ -517,35 +496,6 @@
         }
     });
 </script>
-
-<script type="text/javascript">
-    $('#season_id').change(function () {
-        var season_id = $(this).val();
-        var _token = $("input[name*='_token']").val();
-        if (company_id) {
-            $.ajax({
-                type: "POST",
-                url: "../get-seasons-rates",
-                data: {season_id: season_id, _token: _token},
-                success: function (res) {
-                    if (res) {
-                        $("#season_rate_id").empty();
-                        $("#season_rate_id").append('<option>Select Seasons Rates</option>');
-                        $.each(res, function (key, value) {
-                            $("#season_rate_id").append('<option value="' + value['id'] + '">' + value["season_name"] + " " + value["season_rate"] + '</option>');
-                        });
-
-                    } else {
-                        $("#season_rate_id").empty();
-                    }
-                }
-            });
-        } else {
-            $("#season_rate_id").empty();
-        }
-    });
-</script>
-
 
 
 <script>

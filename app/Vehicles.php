@@ -8,7 +8,7 @@ class Vehicles extends Model
 {
     protected $table = 'camp_vechicle';
     protected $primaryKey = 'id';
-    protected $fillable   = ['company_id','city_id','season_id','season_rate_id','v_name','v_person','v_age','v_type','v_engine','v_toll_fee','v_dep_fee','currency_id','category_id','equipments','service_id','inclusion_id','v_images'];   
+    protected $fillable   = ['company_id','city_id','season_id','season_rate_id','v_name','v_person','v_age','v_type','v_engine','v_toll_fee','v_dep_fee','currency_id','category_id','equipments','service_id','inclusion_id','v_images','is_featued'];   
     protected $company_id;
     protected $city_id;
     protected $season_id;
